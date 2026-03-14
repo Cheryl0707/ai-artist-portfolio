@@ -1,0 +1,4 @@
+{
+  "@tailwindcss/oxide@1.0.9": true,
+  "esbuild@0.25.10": true
+}

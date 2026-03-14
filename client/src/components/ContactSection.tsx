@@ -1,0 +1,171 @@
+/* Light Theme Contact Section — Simple form and social links */
+
+import { motion } from "framer-motion";
+import { Linkedin, Mail, FileText } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+
+const socialLinks = [
+  { icon: Linkedin, label: "LinkedIn", handle: "Cheryl Liu", href: "https://www.linkedin.com/in/cheryl-liu-3928ba1ab" },
+  { icon: Mail, label: "Email", handle: "cherylrj0707@gmail.com", href: "mailto:cherylrj0707@gmail.com" },
+  { icon: FileText, label: "Resume", handle: "View my resume", href: "https://drive.google.com/file/d/1uQ4AufiVTlAWxBflYxHy84frrSmo3jj9/view?usp=drive_link" },
+];
+
+export default function ContactSection() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setTimeout(() => {
+      setSending(false);
+      setForm({ name: "", email: "", subject: "", message: "" });
+      toast.success("Message sent! I'll respond within 48 hours.", {
+        style: {
+          background: "#FFFFFF",
+          border: "1px solid #E5E5E4",
+          color: "#000000",
+        },
+      });
+    }, 1500);
+  };
+
+  const inputStyle = {
+    background: "#FFFFFF",
+    border: "1px solid #E5E5E4",
+    color: "#000000",
+    padding: "12px 16px",
+    width: "100%",
+    fontSize: "14px",
+    outline: "none",
+  };
+
+  return (
+    <section id="contact" className="py-32" style={{ background: "#F8F8F7", borderTop: "1px solid #E5E5E4" }}>
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-sm font-medium tracking-wide mb-8" style={{ color: "#2672E4" }}>
+              /Contact
+            </p>
+            <p className="text-lg leading-relaxed mb-12" style={{ color: "#666666" }}>
+              Available for commissions, exhibitions, editorial collaborations, and speaking engagements.
+              I respond to all inquiries within 48 hours.
+            </p>
+
+            {/* Social */}
+            <div className="space-y-4">
+              {socialLinks.map(({ icon: Icon, label, handle, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 group transition-opacity hover:opacity-70"
+                  style={{ color: "#666666" }}
+                >
+                  <Icon size={18} style={{ color: "#2672E4" }} />
+                  <div>
+                    <p className="text-sm" style={{ color: "#999999" }}>
+                      {label}
+                    </p>
+                    <p className="text-base font-medium" style={{ color: "#000000" }}>
+                      {handle}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Your name"
+                    style={inputStyle}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="your@email.com"
+                    style={inputStyle}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={form.subject}
+                  onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                  placeholder="Commission / Exhibition / Collaboration"
+                  style={inputStyle}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
+                  Message
+                </label>
+                <textarea
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  placeholder="Tell me about your project..."
+                  style={{ ...inputStyle, resize: "vertical" }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="w-full py-3 font-medium text-sm transition-all duration-200 disabled:opacity-60"
+                style={{
+                  background: sending ? "#E5E5E4" : "#2672E4",
+                  color: sending ? "#666666" : "#FFFFFF",
+                  border: "1px solid #2672E4",
+                }}
+              >
+                {sending ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

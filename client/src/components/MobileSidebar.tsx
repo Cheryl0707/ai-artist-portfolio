@@ -79,7 +79,7 @@ export default function MobileSidebar() {
             {/* Category sections */}
             <nav className="flex-1 space-y-4">
               {categories.map((cat) => {
-                const catProjects = getProjectsByCategory(cat.id);
+                const catProjects = getProjectsByCategory(cat.id, true);
                 return (
                   <div key={cat.id}>
                     <p

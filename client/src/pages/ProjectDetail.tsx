@@ -11,9 +11,13 @@ interface Section {
   label: string;
   description: string;
   images: string[];
+  captions?: string[];
+  rowCaption?: string;
+  rowLabel?: string;
   videos?: string[];
   layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row";
   youtube?: string;
+  extraRows?: { label: string; items: { type: "image" | "video"; src: string; caption?: string }[] }[];
 }
 const projectSections: Record<string, Section[]> = {
   "samuel-adams-previs": [
@@ -150,6 +154,72 @@ const projectSections: Record<string, Section[]> = {
   ],
   "checkers-and-rallys": [
     {
+      label: "From Concept to Set Design",
+      description:
+        "The AI-generated creative direction was translated into a detailed production deck. A practical brownstone stoop with real steps and railing was constructed as the physical anchor for the spot — with checkered vinyl wrapping transforming the stairs to match the brand identity.",
+      images: [
+        "/images/projects/checkers/set-design-deck.jpg",
+        "/images/projects/checkers/final-disco-wide.png",
+        "/images/projects/checkers/final-disco-closeup.png",
+      ],
+      rowCaption: "Stairs built as practical props — Production Designer: Paola Andrea",
+      layout: "hero-plus-row",
+    },
+    {
+      label: "AI Style Frames for Unreal Engine",
+      description:
+        "Generated AI style frames to define the lighting direction — from warm, natural daylight to a neon disco transformation with saturated magentas, cyans, and golds. These frames served as direct visual references for the Unreal Engine artist building the LED volume environments.",
+      images: [
+        "/images/projects/checkers/lighting-styleframe.jpg",
+      ],
+      layout: "hero-plus-row",
+      extraRows: [
+        {
+          label: "DAYTIME LOOK",
+          items: [
+            { type: "image", src: "/images/projects/checkers/ai-brownstone-day.png", caption: "AI Generated" },
+            { type: "video", src: "/images/projects/checkers/checkers-2/unreal-daytime.mp4", caption: "Unreal Engine" },
+          ],
+        },
+        {
+          label: "NIGHTTIME LOOK",
+          items: [
+            { type: "image", src: "/images/projects/checkers/checkers-2/ai-nighttime.png", caption: "AI Generated" },
+            { type: "video", src: "/images/projects/checkers/checkers-2/unreal-nighttime.mp4", caption: "Unreal Engine" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Tech-Vis for Client",
+      description:
+        "Created with supervisor Lawrence Jones to communicate our technical capabilities to the client. Virtual production is a niche field — visualizing what the LED volume can achieve helped all stakeholders understand the creative and technical possibilities before committing to the shoot.",
+      images: [
+        "/images/projects/checkers/checkers-2/tech/tech-vis-daytime.png",
+        "/images/projects/checkers/checkers-2/tech/tech-vis-disco.png",
+      ],
+      layout: "side-by-side",
+      extraRows: [
+        {
+          label: "ONSET VP FUNCTIONALITY FORM",
+          items: [
+            { type: "image", src: "/images/projects/checkers/checkers-2/tech/vp-form-01.jpg" },
+            { type: "image", src: "/images/projects/checkers/checkers-2/tech/vp-form-02.jpg" },
+            { type: "image", src: "/images/projects/checkers/checkers-2/tech/vp-form-03.jpg" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Behind the Scenes",
+      description: "",
+      images: [],
+      videos: ["/images/projects/checkers/checkers-hero.mp4"],
+      layout: "video-hero-plus-row",
+    },
+  ],
+  "checkers-vp": [
+    {
       label: "Final Commercial",
       description: "",
       images: [],
@@ -176,7 +246,7 @@ const projectSections: Record<string, Section[]> = {
         "/images/projects/checkers/bts-led-stage-03.jpg",
       ],
       videos: [
-        "/images/projects/checkers/bts-video-02.mov",
+        "/images/projects/checkers/bts-video-02.mp4",
       ],
       layout: "video-hero-plus-row",
     },
@@ -247,7 +317,7 @@ const projectSections: Record<string, Section[]> = {
       description:
         "Interactive particle system created through vibe coding — designed as a real-time shooting background for video production. Shooting footage coming soon.",
       images: [],
-      videos: ["/images/projects/particles/demo.mov"],
+      videos: ["/images/projects/particles/demo.mp4"],
       layout: "video-hero-plus-row",
     },
   ],
@@ -257,7 +327,7 @@ const projectSections: Record<string, Section[]> = {
       description:
         "Real-time generative kaleidoscope patterns created through vibe coding, designed to be used as dynamic shooting backgrounds for video production.",
       images: [],
-      videos: ["/images/projects/kaleidoscope/demo.mov"],
+      videos: ["/images/projects/kaleidoscope/demo.mp4"],
       layout: "video-hero-plus-row",
     },
   ],
@@ -475,17 +545,70 @@ export default function ProjectDetail() {
                         className="w-full h-auto object-cover"
                       />
                     </div>
+                    {section.rowLabel && (
+                      <p className="text-[11px] font-medium tracking-widest uppercase mb-1" style={{ color: "#999999" }}>
+                        {section.rowLabel}
+                      </p>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {section.images.slice(1).map((img, j) => (
-                        <div key={j} className="overflow-hidden rounded-lg">
-                          <img
-                            src={img}
-                            alt={`${section.label} ${j + 2}`}
-                            className="w-full h-auto object-cover"
-                          />
+                        <div key={j}>
+                          <div className="overflow-hidden rounded-lg aspect-[16/10]">
+                            <img
+                              src={img}
+                              alt={`${section.label} ${j + 2}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          {section.captions?.[j + 1] && (
+                            <p className="text-xs font-medium tracking-wide uppercase mt-2 text-center" style={{ color: "#999999" }}>
+                              {section.captions[j + 1]}
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>
+                    {section.rowCaption && (
+                      <p className="text-xs font-medium tracking-wide mt-2 text-center" style={{ color: "#999999" }}>
+                        {section.rowCaption}
+                      </p>
+                    )}
+                    {section.extraRows?.map((row, ri) => (
+                      <div key={ri} className="mt-8">
+                        <p className="text-[11px] font-medium tracking-widest uppercase mb-1" style={{ color: "#999999" }}>
+                          {row.label}
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {row.items.map((item, ii) => (
+                            <div key={ii}>
+                              <div className="overflow-hidden rounded-lg aspect-[16/10]">
+                                {item.type === "video" ? (
+                                  <video
+                                    src={item.src}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <img
+                                    src={item.src}
+                                    alt={`${row.label} ${ii + 1}`}
+                                    className="w-full h-full object-cover"
+                                  />
+                                )}
+                              </div>
+                              {item.caption && (
+                                <p className="text-xs font-medium tracking-wide uppercase mt-2 text-center" style={{ color: "#999999" }}>
+                                  {item.caption}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ) : section.youtube ? (
                   <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16 / 9" }}>
@@ -532,6 +655,44 @@ export default function ProjectDetail() {
                     </div>
                   ))
                 )}
+
+                {/* Extra rows — works with any layout */}
+                {section.layout !== "hero-plus-row" && section.extraRows?.map((row, ri) => (
+                  <div key={ri} className="mt-8">
+                    <p className="text-[11px] font-medium tracking-widest uppercase mb-1" style={{ color: "#999999" }}>
+                      {row.label}
+                    </p>
+                    <div className={`grid grid-cols-1 gap-4 ${row.items.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+                      {row.items.map((item, ii) => (
+                        <div key={ii}>
+                          <div className="overflow-hidden rounded-lg">
+                            {item.type === "video" ? (
+                              <video
+                                src={item.src}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full h-auto object-cover"
+                              />
+                            ) : (
+                              <img
+                                src={item.src}
+                                alt={`${row.label} ${ii + 1}`}
+                                className="w-full h-auto object-cover"
+                              />
+                            )}
+                          </div>
+                          {item.caption && (
+                            <p className="text-xs font-medium tracking-wide uppercase mt-2 text-center" style={{ color: "#999999" }}>
+                              {item.caption}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </motion.div>
             ))}
           </div>

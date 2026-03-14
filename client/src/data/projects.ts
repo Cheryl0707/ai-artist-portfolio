@@ -12,6 +12,7 @@ export interface Project {
   slug: string;
   category: string;
   featured?: boolean;
+  hidden?: boolean;
   status?: "live" | "wip";
   externalUrl?: string;
 }
@@ -22,14 +23,59 @@ export interface Category {
 }
 
 export const categories: Category[] = [
-  { id: "ai-previs", label: "AI + Unreal Pre-vis" },
   { id: "film-vp", label: "Film Virtual Production" },
+  { id: "ai-previs", label: "AI + Unreal Pre-vis" },
   { id: "automation", label: "Automation Workflows" },
   { id: "google-ai", label: "Google AI Studio" },
   { id: "playground", label: "Playground" },
 ];
 
 export const projects: Project[] = [
+  // ── Film Virtual Production ──────────────────────────────
+  {
+    id: "checkers",
+    title: "Checker's & Rally's 26'",
+    description:
+      "AI-generated creative direction brought to life through virtual production — from concept art to set design to LED volume shoot.",
+    fullDescription: `Led the creative direction pipeline for Checker's & Rally's commercial, starting with AI-generated concept art that defined the visual language — a brownstone street scene with signature checkered stairs and party-lit windows. This AI vision guided every downstream decision, from physical set construction to Unreal Engine environment builds.
+
+The production team constructed a practical brownstone stoop wrapped in checkered vinyl to match the AI-generated direction, while I built photorealistic virtual restaurant environments in Unreal Engine. During the live shoot, these environments were displayed on a curved LED volume, allowing actors to perform within the virtual setting — capturing everything in-camera with no green screen compositing required.`,
+    coverImage: "/images/projects/checkers/cover.png",
+    processImages: [
+      "/images/projects/checkers/unreal-exterior-day.png",
+      "/images/projects/checkers/unreal-menu-board.png",
+      "/images/projects/checkers/unreal-night-lighting.png",
+      "/images/projects/checkers/bts-led-stage-01.jpg",
+      "/images/projects/checkers/bts-led-stage-02.jpg",
+      "/images/projects/checkers/bts-led-stage-03.jpg",
+      "/images/projects/checkers/bts-led-stage-04.jpg",
+      "/images/projects/checkers/monitor-couple.jpg",
+      "/images/projects/checkers/monitor-burger.jpg",
+    ],
+    tags: ["AI Creative Direction", "Virtual Production", "Unreal Engine", "LED Volume", "Commercial"],
+    tools: ["AI Image Generation", "Unreal Engine", "nDisplay", "LED Volume"],
+    year: "2024",
+    slug: "checkers-and-rallys",
+    category: "film-vp",
+  },
+  {
+    id: "checkers-vp",
+    title: "Checker's & Rally's 25'",
+    description:
+      "Unreal Engine operator for a Checker's & Rally's commercial — built and operated virtual environments on an LED volume stage.",
+    fullDescription: `Worked as Unreal Engine operator on the Checker's and Rally's commercial production. Responsible for building photorealistic virtual restaurant environments in Unreal Engine and operating them live on an LED volume stage during the shoot.
+
+The project involved creating both daytime and nighttime versions of the Checker's restaurant interior, complete with brick walls, checkered tile floor, warm practical lighting, and fully dressed set pieces. During the live shoot, the Unreal Engine environments were displayed on a curved LED volume, allowing actors to perform within the virtual setting — capturing everything in-camera with no green screen compositing required.`,
+    coverImage: "/images/projects/checkers/unreal-interior-closeup.png",
+    processImages: [],
+    tags: ["Virtual Production", "Unreal Engine", "LED Volume", "Commercial"],
+    tools: ["Unreal Engine", "nDisplay", "LED Volume"],
+    year: "2024",
+    slug: "checkers-vp",
+    category: "film-vp",
+    hidden: true,
+  },
+
   // ── AI + Unreal Pre-vis ──────────────────────────────────
   {
     id: "sam-adams",
@@ -82,55 +128,6 @@ The project explores both static product shots and video generation conditioning
     category: "ai-previs",
   },
 
-  // ── Film Virtual Production ──────────────────────────────
-  {
-    id: "thesis-film",
-    title: "Wolfe and The Bee",
-    description:
-      "NYU MFA thesis film — cinematic virtual environments built in Unreal Engine with PCG, Megascans, and atmospheric lighting.",
-    fullDescription: `"Wolfe and The Bee" is my NYU MFA thesis film, set in rural Minnesota during a cold winter night. I designed and built multiple photorealistic virtual environments in Unreal Engine to serve as the film's visual backbone — from a moody snow-covered road to a climactic campsite scene.
-
-Each environment was crafted with a focus on cinematic atmosphere: Procedural Content Generation for natural landscapes, Megascans foliages for organic detail, volumetric fog and atmospheric lighting for mood, and precise camera settings to achieve a filmic look.`,
-    coverImage: "/images/projects/thesis/road.png",
-    processImages: [
-      "/images/projects/thesis/road.png",
-      "/images/projects/thesis/campsite.png",
-      "/images/projects/thesis/gas-station-wide.png",
-      "/images/projects/thesis/gas-station-graffiti.png",
-      "/images/projects/thesis/gas-station-open.png",
-    ],
-    tags: ["Virtual Production", "Unreal Engine", "Film", "Environment Design"],
-    tools: ["Unreal Engine", "PCG", "Megascans", "Blueprint", "Volumetric Fog"],
-    year: "2025",
-    slug: "wolfe-and-the-bee",
-    category: "film-vp",
-  },
-  {
-    id: "checkers",
-    title: "Checker's and Rally's Commercial",
-    description:
-      "Unreal Engine operator for a Checker's & Rally's commercial — built and operated virtual environments on an LED volume stage.",
-    fullDescription: `Worked as Unreal Engine operator on the Checker's and Rally's commercial production. Responsible for building photorealistic virtual restaurant environments in Unreal Engine and operating them live on an LED volume stage during the shoot.
-
-The project involved creating both daytime and nighttime versions of the Checker's restaurant exterior, complete with detailed menu boards and signage. During the live shoot, the Unreal Engine environments were displayed on a curved LED volume, allowing actors to perform within the virtual setting while the camera captured everything in-camera — no green screen compositing required.`,
-    coverImage: "/images/projects/checkers/unreal-interior-closeup.png",
-    processImages: [
-      "/images/projects/checkers/unreal-exterior-day.png",
-      "/images/projects/checkers/unreal-menu-board.png",
-      "/images/projects/checkers/unreal-night-lighting.png",
-      "/images/projects/checkers/bts-led-stage-01.jpg",
-      "/images/projects/checkers/bts-led-stage-02.jpg",
-      "/images/projects/checkers/bts-led-stage-03.jpg",
-      "/images/projects/checkers/bts-led-stage-04.jpg",
-      "/images/projects/checkers/monitor-couple.jpg",
-      "/images/projects/checkers/monitor-burger.jpg",
-    ],
-    tags: ["Virtual Production", "Unreal Engine", "LED Volume", "Commercial"],
-    tools: ["Unreal Engine", "nDisplay", "LED Volume"],
-    year: "2024",
-    slug: "checkers-and-rallys",
-    category: "film-vp",
-  },
   {
     id: "new-year",
     title: "New Year, New Me",
@@ -223,7 +220,7 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     description:
       "Vibe-coded interactive particle system used as a real-time shooting background. Footage coming soon.",
     fullDescription: `An interactive particle system created through vibe coding, designed as a dynamic real-time background for video shoots. The system generates responsive particle animations that react to input, creating organic, flowing visuals suitable for on-set projection or LED volume backgrounds. Shooting footage coming soon.`,
-    coverImage: "/images/projects/particles/demo.mov",
+    coverImage: "/images/projects/particles/demo.mp4",
     processImages: [],
     tags: ["Vibe Coding", "Interactive", "Particles", "Shooting Background"],
     tools: ["Google AI Studio", "JavaScript", "WebGL"],
@@ -264,8 +261,8 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
   },
 ];
 
-export function getProjectsByCategory(categoryId: string): Project[] {
-  return projects.filter((p) => p.category === categoryId);
+export function getProjectsByCategory(categoryId: string, includeHidden = false): Project[] {
+  return projects.filter((p) => p.category === categoryId && (includeHidden || !p.hidden));
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {

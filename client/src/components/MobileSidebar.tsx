@@ -8,10 +8,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { categories, getProjectsByCategory } from "@/data/projects";
+import { useLanguage, useBiText } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
+  const { t } = useLanguage();
+  const bt = useBiText();
 
   const close = () => setOpen(false);
 
@@ -53,7 +57,7 @@ export default function MobileSidebar() {
 
             {/* Personal links */}
             <nav className="mb-4 space-y-1">
-              <MobileLink href="/about" label="About" currentPath={location} onNavigate={close} />
+              <MobileLink href="/about" label={t.nav.about} currentPath={location} onNavigate={close} />
               <a
                 href="https://drive.google.com/file/d/1uQ4AufiVTlAWxBflYxHy84frrSmo3jj9/view?usp=drive_link"
                 target="_blank"
@@ -62,7 +66,7 @@ export default function MobileSidebar() {
                 style={{ color: "#666666" }}
                 onClick={close}
               >
-                Resume
+                {t.nav.resume}
               </a>
               <a
                 href="https://www.linkedin.com/in/cheryl-liu-3928ba1ab"
@@ -72,8 +76,9 @@ export default function MobileSidebar() {
                 style={{ color: "#666666" }}
                 onClick={close}
               >
-                LinkedIn
+                {t.nav.linkedin}
               </a>
+              <LanguageSwitcher />
             </nav>
 
             {/* Category sections */}
@@ -86,21 +91,21 @@ export default function MobileSidebar() {
                       className="text-[11px] font-medium tracking-wide uppercase mb-2"
                       style={{ color: "#999999" }}
                     >
-                      {cat.label}
+                      {bt(cat.label)}
                     </p>
                     <div className="space-y-1">
                       {catProjects.map((project) => (
                         <MobileLink
                           key={project.slug}
                           href={`/projects/${project.slug}`}
-                          label={project.title}
+                          label={bt(project.title)}
                           currentPath={location}
                           onNavigate={close}
                         />
                       ))}
                       {catProjects.length === 0 && (
                         <p className="text-xs italic" style={{ color: "#CCCCCC" }}>
-                          Coming soon
+                          {t.nav.comingSoon}
                         </p>
                       )}
                     </div>
@@ -111,7 +116,7 @@ export default function MobileSidebar() {
 
             {/* Copyright */}
             <p className="mt-auto pt-6 text-[11px]" style={{ color: "#999999" }}>
-              &copy; 2025 Cheryl Liu
+              {t.nav.copyright}
             </p>
           </div>
         </SheetContent>

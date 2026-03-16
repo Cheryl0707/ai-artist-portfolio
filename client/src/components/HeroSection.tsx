@@ -1,8 +1,10 @@
 /* Hero Section — 16:9 rounded video, text centered-left */
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section className="pt-8 pb-16 px-6" style={{ background: "#F8F8F7" }}>
       <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "16 / 9", maxHeight: "70vh" }}>
@@ -28,15 +30,15 @@ export default function HeroSection() {
             className="text-2xl lg:text-4xl font-bold leading-snug mb-2"
             style={{ color: "#FFFFFF" }}
           >
-            Cheryl Liu creates at the
+            {t.hero.tagline}
             <br />
-            intersection of AI and production.
+            {t.hero.tagline2}
           </h1>
           <p
             className="text-sm lg:text-base"
             style={{ color: "rgba(255,255,255,0.8)" }}
           >
-            Previously at NYU. Based in Brooklyn, NY.
+            {t.hero.subtitle}
           </p>
         </motion.div>
       </div>

@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "wouter";
 import { categories, getProjectsByCategory, type Project } from "@/data/projects";
+import { useLanguage, useBiText } from "@/contexts/LanguageContext";
 
 export default function ProjectsSection() {
+  const { t } = useLanguage();
+  const bt = useBiText();
   return (
     <section id="projects" className="relative pb-32 px-6" style={{ background: "#F8F8F7" }}>
       {categories.map((cat) => {
@@ -16,7 +19,7 @@ export default function ProjectsSection() {
         const rest = catProjects.filter((p) => !p.featured);
 
         return (
-          <div key={cat.id} className="mb-16">
+          <div key={cat.id} id={`section-${cat.id}`} className="mb-16">
             {/* Category label */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -26,7 +29,7 @@ export default function ProjectsSection() {
               className="text-[11px] font-medium tracking-widest uppercase mb-6"
               style={{ color: "#999999" }}
             >
-              {cat.label}
+              {bt(cat.label)}
             </motion.p>
 
             {/* If there's a featured project: 1 large + rest small */}
@@ -43,7 +46,7 @@ export default function ProjectsSection() {
               </div>
             ) : (
               /* Even grid for non-featured categories */
-              <div className={`grid grid-cols-1 gap-5 ${catProjects.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {catProjects.map((p, i) => (
                   <ProjectCard key={p.id} project={p} size="normal" index={i} />
                 ))}
@@ -65,6 +68,8 @@ function ProjectCard({
   size: "large" | "normal" | "small";
   index: number;
 }) {
+  const { t } = useLanguage();
+  const bt = useBiText();
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const aspectClass =
@@ -102,7 +107,7 @@ function ProjectCard({
         {/* Cover image */}
         <img
           src={project.coverImage}
-          alt={project.title}
+          alt={bt(project.title)}
           className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
         />
         {/* Video overlay on hover */}
@@ -124,7 +129,7 @@ function ProjectCard({
             className="absolute top-3 right-3 text-[10px] font-medium tracking-wide uppercase px-2 py-1 rounded-full"
             style={{ background: "#F8F8F7", color: "#999999", border: "1px solid #E5E5E4" }}
           >
-            In Progress
+            {t.projectDetail.inProgress}
           </span>
         )}
       </div>
@@ -134,10 +139,10 @@ function ProjectCard({
         className={`font-bold mb-1 ${size === "large" ? "text-xl" : "text-base"}`}
         style={{ color: "#000000" }}
       >
-        {project.title}
+        {bt(project.title)}
       </h3>
       <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>
-        {project.description}
+        {bt(project.description)}
       </p>
     </motion.div>
   );

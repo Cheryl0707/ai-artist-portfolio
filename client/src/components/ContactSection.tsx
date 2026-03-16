@@ -4,14 +4,16 @@ import { motion } from "framer-motion";
 import { Linkedin, Mail, FileText } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-
-const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", handle: "Cheryl Liu", href: "https://www.linkedin.com/in/cheryl-liu-3928ba1ab" },
-  { icon: Mail, label: "Email", handle: "cherylrj0707@gmail.com", href: "mailto:cherylrj0707@gmail.com" },
-  { icon: FileText, label: "Resume", handle: "View my resume", href: "https://drive.google.com/file/d/1uQ4AufiVTlAWxBflYxHy84frrSmo3jj9/view?usp=drive_link" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
+
+  const socialLinks = [
+    { icon: Linkedin, label: "LinkedIn", handle: "Cheryl Liu", href: "https://www.linkedin.com/in/cheryl-liu-3928ba1ab" },
+    { icon: Mail, label: t.contact.emailLabel, handle: "cherylrj0707@gmail.com", href: "mailto:cherylrj0707@gmail.com" },
+    { icon: FileText, label: t.nav.resume, handle: t.contact.resumeHandle, href: "https://drive.google.com/file/d/1uQ4AufiVTlAWxBflYxHy84frrSmo3jj9/view?usp=drive_link" },
+  ];
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
 
@@ -21,7 +23,7 @@ export default function ContactSection() {
     setTimeout(() => {
       setSending(false);
       setForm({ name: "", email: "", subject: "", message: "" });
-      toast.success("Message sent! I'll respond within 48 hours.", {
+      toast.success(t.contact.successToast, {
         style: {
           background: "#FFFFFF",
           border: "1px solid #E5E5E4",
@@ -53,11 +55,10 @@ export default function ContactSection() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-sm font-medium tracking-wide mb-8" style={{ color: "#2672E4" }}>
-              /Contact
+              {t.contact.sectionLabel}
             </p>
             <p className="text-lg leading-relaxed mb-12" style={{ color: "#666666" }}>
-              Available for commissions, exhibitions, editorial collaborations, and speaking engagements.
-              I respond to all inquiries within 48 hours.
+              {t.contact.intro}
             </p>
 
             {/* Social */}
@@ -96,27 +97,27 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
-                    Name
+                    {t.contact.nameLabel}
                   </label>
                   <input
                     type="text"
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Your name"
+                    placeholder={t.contact.namePlaceholder}
                     style={inputStyle}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
-                    Email
+                    {t.contact.emailLabel}
                   </label>
                   <input
                     type="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="your@email.com"
+                    placeholder={t.contact.emailPlaceholder}
                     style={inputStyle}
                   />
                 </div>
@@ -124,28 +125,28 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
-                  Subject
+                  {t.contact.subjectLabel}
                 </label>
                 <input
                   type="text"
                   required
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  placeholder="Commission / Exhibition / Collaboration"
+                  placeholder={t.contact.subjectPlaceholder}
                   style={inputStyle}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: "#666666" }}>
-                  Message
+                  {t.contact.messageLabel}
                 </label>
                 <textarea
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Tell me about your project..."
+                  placeholder={t.contact.messagePlaceholder}
                   style={{ ...inputStyle, resize: "vertical" }}
                 />
               </div>
@@ -160,7 +161,7 @@ export default function ContactSection() {
                   border: "1px solid #2672E4",
                 }}
               >
-                {sending ? "Sending..." : "Send Message"}
+                {sending ? t.contact.sendingButton : t.contact.sendButton}
               </button>
             </form>
           </motion.div>

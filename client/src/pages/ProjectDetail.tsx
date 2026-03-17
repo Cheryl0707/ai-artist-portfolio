@@ -313,6 +313,46 @@ const projectSections: Record<string, Section[]> = {
   ],
   "email-agent": [
     {
+      label: { en: "Fetch Single Email", zh: "获取单封邮件" },
+      description: {
+        en: "Retrieve and parse a single email by ID — the agent extracts sender, subject, body, and attachments automatically.",
+        zh: "通过 ID 获取并解析单封邮件——代理自动提取发件人、主题、正文和附件。",
+      },
+      images: [],
+      videos: ["/images/projects/emailagent/fetch-single-email.mp4"],
+      layout: "full",
+    },
+    {
+      label: { en: "Fetch Group Emails", zh: "批量获取邮件" },
+      description: {
+        en: "Batch-fetch emails from a label or search query, with structured summaries for each message.",
+        zh: "从标签或搜索条件批量获取邮件，为每封邮件生成结构化摘要。",
+      },
+      images: [],
+      videos: ["/images/projects/emailagent/fetch-group-email.mp4"],
+      layout: "full",
+    },
+    {
+      label: { en: "Help Me Draft", zh: "辅助起草" },
+      description: {
+        en: "AI-assisted drafting — describe what you want to say, and the agent composes a polished email draft.",
+        zh: "AI 辅助起草——描述你想表达的内容，代理即可生成一封完善的邮件草稿。",
+      },
+      images: [],
+      videos: ["/images/projects/emailagent/help-me-draft.mp4"],
+      layout: "full",
+    },
+    {
+      label: { en: "Draft with Template", zh: "模板起草" },
+      description: {
+        en: "Generate drafts from reusable templates — fill in key variables and let the agent handle formatting and tone.",
+        zh: "基于可复用模板生成草稿——填入关键变量，代理负责格式和语气。",
+      },
+      images: [],
+      videos: ["/images/projects/emailagent/draft-with-template.mp4"],
+      layout: "full",
+    },
+    {
       label: { en: "Project Manual", zh: "项目手册" },
       description: { en: "", zh: "" },
       images: [],
@@ -686,15 +726,28 @@ export default function ProjectDetail() {
                     ))}
                   </div>
                 ) : (
-                  section.images.map((img, j) => (
-                    <div key={j} className="overflow-hidden rounded-lg">
-                      <img
-                        src={img}
-                        alt={`${bt(section.label)} ${j + 1}`}
-                        className="w-full h-auto object-cover"
-                      />
-                    </div>
-                  ))
+                  <>
+                    {section.images.map((img, j) => (
+                      <div key={j} className="overflow-hidden rounded-lg">
+                        <img
+                          src={img}
+                          alt={`${bt(section.label)} ${j + 1}`}
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    ))}
+                    {section.videos?.map((vid, j) => (
+                      <div key={`v${j}`} className="overflow-hidden rounded-lg">
+                        <video
+                          src={vid}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    ))}
+                  </>
                 )}
 
                 {/* Extra rows — works with any layout */}

@@ -76,6 +76,16 @@ const projectSections: Record<string, Section[]> = {
   ],
   ritz: [
     {
+      label: { en: "First Version — Without AI", zh: "第一版——无 AI" },
+      description: {
+        en: "The initial pre-visualization pass created without any AI generation — establishing the base composition and camera work before introducing the AI pipeline.",
+        zh: "在引入 AI 管线之前创建的初始预演版本——建立基础构图和镜头运动。",
+      },
+      images: [],
+      videos: ["/images/projects/ritz/ritz-v1-no-ai.mp4"],
+      layout: "full",
+    },
+    {
       label: { en: "Product References", zh: "产品参考" },
       description: {
         en: "Starting from official Ritz product photography — the iconic cracker on signature red, and a hand-held hero shot — these references define the visual language and brand identity that the AI pipeline needs to preserve.",

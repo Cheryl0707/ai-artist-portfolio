@@ -7,6 +7,7 @@ export interface Project {
   fullDescription: BiText;
   coverImage: string;
   coverVideo?: string;
+  heroImage?: string;
   processImages: string[];
   tags: BiText[];
   tools: string[];
@@ -17,6 +18,7 @@ export interface Project {
   hidden?: boolean;
   status?: "live" | "wip";
   externalUrl?: string;
+  coverPosition?: string;
   roles?: BiText[];
 }
 
@@ -26,15 +28,13 @@ export interface Category {
 }
 
 export const categories: Category[] = [
-  { id: "film-vp", label: { en: "Film Virtual Production", zh: "影视虚拟制作" } },
-  { id: "ai-previs", label: { en: "AI + Unreal Pre-vis", zh: "AI + Unreal 预演" } },
+  { id: "gen-production", label: { en: "Generative Production", zh: "生成式制作" } },
   { id: "automation", label: { en: "Automation Workflows", zh: "自动化工作流" } },
-  { id: "google-ai", label: { en: "Google AI Studio", zh: "Google AI Studio" } },
-  { id: "playground", label: { en: "Playground", zh: "实验场" } },
+  { id: "google-ai", label: { en: "Playground", zh: "Playground" } },
 ];
 
 export const projects: Project[] = [
-  // ── Film Virtual Production ──────────────────────────────
+  // ── Generative Production ───────────────────────────────
   {
     id: "checkers",
     title: {
@@ -75,7 +75,7 @@ The production team constructed a practical brownstone stoop wrapped in checkere
     tools: ["Unreal Engine", "ComfyUI", "Nano Banana", "BFL Flux"],
     year: "2026",
     slug: "checkers-and-rallys",
-    category: "film-vp",
+    category: "gen-production",
     roles: [
       { en: "AI Artist", zh: "AI 美术师" },
       { en: "Tech-vis Assist", zh: "技术可视化助理" },
@@ -110,7 +110,7 @@ The project involved creating both daytime and nighttime versions of the Checker
     tools: ["Unreal Engine", "Maya", "LiveFX Assimilate"],
     year: "2025",
     slug: "checkers-vp",
-    category: "film-vp",
+    category: "gen-production",
     hidden: true,
     roles: [
       { en: "Unreal Engine Environment Artist", zh: "Unreal Engine 环境美术师" },
@@ -156,7 +156,7 @@ Created with Xinyu (Cindy) Li using Runway's AI tools. We used Runway Frames to 
     tools: ["Runway Frames", "Gen-3 Alpha", "Gen-3 Alpha Turbo", "Gen-4", "Epidemic Sound"],
     year: "2025",
     slug: "new-year-new-me",
-    category: "film-vp",
+    category: "gen-production",
     roles: [
       { en: "Image to Video Prompt Engineer", zh: "图生视频提示词工程师" },
       { en: "Sound Designer", zh: "音效设计师" },
@@ -187,18 +187,18 @@ Created with Xinyu (Cindy) Li using Runway's AI tools. We used Runway Frames to 
     tools: ["Unreal Engine", "nDisplay", "LED Volume"],
     year: "2026",
     slug: "panera-mix-and-match",
-    category: "film-vp",
+    category: "gen-production",
     roles: [
       { en: "Pre-vis Artist", zh: "预演美术师" },
     ],
   },
 
-  // ── AI + Unreal Pre-vis ──────────────────────────────────
+  // ── Generative Production (continued) ───────────────────
   {
     id: "sam-adams",
     title: {
-      en: "Samuel Adam's Commercial Pre-vis",
-      zh: "Samuel Adams 广告预演",
+      en: "Samuel Adam's Pre-visualization",
+      zh: "Samuel Adams 预演",
     },
     description: {
       en: "Client-facing pre-visualization combining Unreal Engine depth & outline passes with ComfyUI generative workflows.",
@@ -212,7 +212,9 @@ The workflow starts with storyboard sketches defining camera movement and compos
 
 工作流程从分镜草图开始，确定镜头运动与构图，随后使用 Unreal Engine 生成带有深度和轮廓通道的基础渲染。这些通道输入 ComfyUI，通过重新打光、外扩绘制和风格迁移生成最终的逼真产品画面——同时保持精确的构图控制，使客户可以放心审批。`,
     },
-    coverImage: "/images/projects/sam-adams/hero.png",
+    coverImage: "/images/projects/sam-adams/cover-static.png",
+    coverVideo: "/images/projects/sam-adams/cover.gif",
+    heroImage: "/images/projects/sam-adams/detail-hero.png",
     processImages: [
       "/images/projects/sam-adams/hero.png",
       "/images/projects/sam-adams/storyboard-dolly.png",
@@ -226,10 +228,10 @@ The workflow starts with storyboard sketches defining camera movement and compos
       { en: "ComfyUI", zh: "ComfyUI" },
       { en: "Pre-vis", zh: "预演" },
     ],
-    tools: ["Unreal Engine", "ComfyUI", "Depth Pass", "Outline Pass", "Outpainting", "Relighting"],
-    year: "2024",
+    tools: ["Unreal Engine", "ComfyUI"],
+    year: "2025",
     slug: "samuel-adams-previs",
-    category: "ai-previs",
+    category: "gen-production",
     featured: true,
   },
   {
@@ -250,7 +252,8 @@ The project explores both static product shots and video generation conditioning
 
 该项目同时探索了静态产品画面和视频生成条件控制，产出面向客户的视觉效果，弥合了分镜概念与最终广告成品之间的差距。`,
     },
-    coverImage: "/images/projects/ritz/cracker-red.png",
+    coverImage: "/images/projects/ritz/cover-static.png",
+    coverVideo: "/images/projects/ritz/cover.gif",
     processImages: [
       "/images/projects/ritz/cracker-red.png",
       "/images/projects/ritz/hand-cracker.png",
@@ -271,7 +274,7 @@ The project explores both static product shots and video generation conditioning
     tools: ["Unreal Engine", "ComfyUI", "Depth Pass", "Mask Pass"],
     year: "2024",
     slug: "ritz",
-    category: "ai-previs",
+    category: "gen-production",
   },
 
   // ── Automation Workflows ─────────────────────────────────
@@ -324,7 +327,8 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
 
 起草流程提供两种模式：基于模板的快速起草和 AI 辅助的上下文起草。上下文起草器会提取关系摘要，生成三个个性化的开头选项，然后逐段构建邮件——每一步都可在发送至 Gmail 草稿箱前进行审阅和自定义。该架构旨在扩展为完整的客户情报系统，集成 HubSpot CRM 和 ChatGPT 驱动的查询功能。`,
     },
-    coverImage: "/images/projects/emailagent/page-01.png",
+    coverImage: "/images/projects/emailagent/Thumbnail.png",
+    coverPosition: "left",
     processImages: [
       "/images/projects/emailagent/page-01.png",
       "/images/projects/emailagent/page-02.png",
@@ -405,60 +409,6 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     category: "google-ai",
   },
 
-  // ── Playground ───────────────────────────────────────────
-  {
-    id: "dance-videographer",
-    title: {
-      en: "Dance Videographer",
-      zh: "舞蹈摄影师",
-    },
-    description: {
-      en: "Dance videography and motion capture explorations.",
-      zh: "舞蹈影像拍摄与动作捕捉探索。",
-    },
-    fullDescription: {
-      en: `A collection of dance videography work spanning multiple styles and productions.`,
-      zh: `一系列涵盖多种风格与制作形式的舞蹈影像作品集。`,
-    },
-    coverImage: "/images/projects/dance-placeholder.jpg",
-    coverVideo: "/video/dance-placeholder.mp4",
-    processImages: [],
-    tags: [
-      { en: "Videography", zh: "影像拍摄" },
-      { en: "Dance", zh: "舞蹈" },
-      { en: "Motion", zh: "动态" },
-    ],
-    tools: ["DaVinci Resolve", "Premiere Pro"],
-    year: "2024",
-    slug: "dance-videographer",
-    category: "playground",
-  },
-  {
-    id: "logo-design",
-    title: {
-      en: "Logo Design",
-      zh: "标志设计",
-    },
-    description: {
-      en: "Brand identity and logo design work.",
-      zh: "品牌形象与标志设计作品。",
-    },
-    fullDescription: {
-      en: `A collection of logo and brand identity design projects.`,
-      zh: `一系列标志与品牌形象设计项目合集。`,
-    },
-    coverImage: "/images/projects/logo-placeholder.jpg",
-    processImages: [],
-    tags: [
-      { en: "Graphic Design", zh: "平面设计" },
-      { en: "Branding", zh: "品牌设计" },
-      { en: "Logo", zh: "标志" },
-    ],
-    tools: ["Illustrator", "Figma"],
-    year: "2024",
-    slug: "logo-design",
-    category: "playground",
-  },
 ];
 
 export function getProjectsByCategory(categoryId: string, includeHidden = false): Project[] {
@@ -467,4 +417,17 @@ export function getProjectsByCategory(categoryId: string, includeHidden = false)
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+const featuredHomeSlugs = [
+  "checkers-and-rallys",
+  "new-year-new-me",
+  "panera-mix-and-match",
+  "email-agent",
+];
+
+export function getFeaturedHomeProjects(): Project[] {
+  return featuredHomeSlugs
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter((p): p is Project => p !== undefined);
 }

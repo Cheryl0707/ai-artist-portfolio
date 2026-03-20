@@ -26,34 +26,17 @@ interface Section {
 const projectSections: Record<string, Section[]> = {
   "samuel-adams-previs": [
     {
-      label: { en: "Final Output", zh: "最终成果" },
+      label: { en: "Step Breakdown", zh: "步骤拆解" },
       description: {
         en: "The hero end-card for Samuel Adams Octoberfest — bottle, pint glass and can composed on a warm wood surface against a deep navy backdrop. Entirely generated through the ComfyUI pipeline.",
         zh: "Samuel Adams Octoberfest 的主视觉终帧 — 酒瓶、品脱杯和罐装啤酒置于温暖的木质表面上，背景为深海军蓝色。完全通过 ComfyUI 管线生成。",
       },
-      images: ["/images/projects/sam-adams/hero.png"],
-      layout: "full",
+      images: [],
+      videos: ["/images/projects/sam-adams/SAM-ADAM-Breakdown.mp4"],
+      layout: "video-hero-plus-row",
     },
     {
-      label: { en: "Storyboard → Render", zh: "分镜 → 渲染" },
-      description: {
-        en: "Starting from hand-drawn storyboard frames that define camera movement (push-in, dolly, looping), the shots are translated into photorealistic renders through Unreal Engine base passes fed into ComfyUI.",
-        zh: "从定义镜头运动（推进、移动、循环）的手绘分镜帧出发，通过 Unreal Engine 基础渲染通道输入 ComfyUI，将镜头转化为照片级真实感渲染。",
-      },
-      images: ["/images/projects/sam-adams/storyboard-dolly.png"],
-      layout: "full",
-    },
-    {
-      label: { en: "Camera Movement Explorations", zh: "镜头运动探索" },
-      description: {
-        en: "Four camera move variations generated for the Juicy IPA can — Dolly, Horizontal Pan, Vertical Tilt, and Zoom In — each produced as a controllable pass to give the director options during pre-vis review.",
-        zh: "为 Juicy IPA 罐装生成了四种镜头运动变体 — 推轨、水平摇摄、垂直俯仰和推进 — 每种都作为可控通道输出，为导演在预演审查时提供多种选择。",
-      },
-      images: ["/images/projects/sam-adams/camera-moves.png"],
-      layout: "full",
-    },
-    {
-      label: { en: "ComfyUI Workflow & Relighting", zh: "ComfyUI 工作流与重新打光" },
+      label: { en: "Concise Lighting", zh: "精准打光" },
       description: {
         en: "Left: the original storyboard sketch and the ComfyUI node graph aligning composition with framing. Right: the final composited product shot relit entirely within ComfyUI to match the target commercial look.",
         zh: "左：原始分镜草图和 ComfyUI 节点图，将构图与画面框架对齐。右：最终合成的产品镜头，完全在 ComfyUI 中重新打光以匹配目标广告效果。",
@@ -62,7 +45,7 @@ const projectSections: Record<string, Section[]> = {
       layout: "full",
     },
     {
-      label: { en: "Outpainting in ComfyUI", zh: "ComfyUI 外扩绘制" },
+      label: { en: "Concise Composition & Product Details", zh: "精准构图与产品细节" },
       description: {
         en: "Extending the original 1920×1080 frame to a wider canvas (1920 + 400 × 1080 + 100) using ComfyUI's outpainting. The seamless extension preserves lighting, texture, and depth consistency across the expanded frame.",
         zh: "使用 ComfyUI 的外扩绘制功能，将原始 1920×1080 帧扩展到更宽的画布（1920 + 400 × 1080 + 100）。无缝扩展在扩大的画面中保持了光照、纹理和深度的一致性。",
@@ -72,6 +55,17 @@ const projectSections: Record<string, Section[]> = {
         "/images/projects/sam-adams/outpaint-after.png",
       ],
       layout: "side-by-side",
+    },
+    {
+      label: { en: "Video Conditioning to Secure Details in Video Rendering", zh: "视频条件控制以确保渲染细节" },
+      description: { en: "", zh: "" },
+      images: [
+        "/images/projects/sam-adams/sec-4/image 185.png",
+        "/images/projects/sam-adams/sec-4/image 184.png",
+        "/images/projects/sam-adams/sec-4/image 2.png",
+        "/images/projects/sam-adams/sec-4/image 1.png",
+      ],
+      layout: "hero-plus-row",
     },
   ],
   ritz: [
@@ -86,51 +80,15 @@ const projectSections: Record<string, Section[]> = {
       layout: "full",
     },
     {
-      label: { en: "Product References", zh: "产品参考" },
-      description: {
-        en: "Starting from official Ritz product photography — the iconic cracker on signature red, and a hand-held hero shot — these references define the visual language and brand identity that the AI pipeline needs to preserve.",
-        zh: "从 Ritz 官方产品摄影出发 — 标志性红色背景上的经典饼干，以及手持主视觉镜头 — 这些参考图定义了 AI 管线需要保持的视觉语言和品牌形象。",
-      },
-      images: [
-        "/images/projects/ritz/cracker-red.png",
-        "/images/projects/ritz/hand-cracker.png",
-      ],
-      layout: "side-by-side",
-    },
-    {
-      label: { en: "AI-driven Product Pre-visualization", zh: "AI 驱动产品预演" },
-      description: {
-        en: "Using the reference assets, the pipeline generates new product visuals through ComfyUI — from the Ritz logo rendered in Unreal Engine (dark depth pass → fully lit) to AI-generated lifestyle shots of a person interacting with the product.",
-        zh: "利用参考素材，管线通过 ComfyUI 生成新的产品视觉 — 从在 Unreal Engine 中渲染的 Ritz 标志（暗色深度通道 → 全光照）到 AI 生成的人物与产品互动的生活场景图。",
-      },
-      images: [
-        "/images/projects/ritz/logo-unreal-dark.png",
-        "/images/projects/ritz/logo-unreal-lit.png",
-      ],
-      layout: "side-by-side",
-    },
-    {
-      label: { en: "Generated Lifestyle Shots", zh: "生成式生活场景图" },
-      description: {
-        en: "ComfyUI generates photorealistic lifestyle imagery conditioned on the Unreal Engine passes — maintaining product accuracy while creating new compositions that didn't exist in the original photography.",
-        zh: "ComfyUI 基于 Unreal Engine 渲染通道生成照片级真实感生活场景图像 — 在保持产品精确度的同时，创造出原始摄影中不存在的新构图。",
-      },
-      images: [
-        "/images/projects/ritz/ai-hands-closeup.png",
-        "/images/projects/ritz/ai-person-cracker.png",
-      ],
-      layout: "side-by-side",
-    },
-    {
       label: { en: "Video Generation Conditioning in Unreal", zh: "Unreal 中的视频生成条件控制" },
       description: {
         en: "Unreal Engine produces structured render passes — depth, mask, and lighting gradient — that serve as conditioning inputs for AI video generation. These passes give precise control over composition, subject isolation, and mood in the final output.",
         zh: "Unreal Engine 生成结构化渲染通道 — 深度、遮罩和光照渐变 — 作为 AI 视频生成的条件输入。这些通道对最终输出的构图、主体分离和氛围提供精确控制。",
       },
       images: [
-        "/images/projects/ritz/pass-depth.png",
-        "/images/projects/ritz/pass-mask.png",
-        "/images/projects/ritz/pass-gradient.png",
+        "/images/projects/ritz/pass-color.gif",
+        "/images/projects/ritz/pass-outline.gif",
+        "/images/projects/ritz/pass-depth-anim.gif",
       ],
       layout: "side-by-side",
     },
@@ -484,7 +442,7 @@ export default function ProjectDetail() {
       <div className="px-6 pt-8">
         <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "16 / 9" }}>
           <img
-            src={project.coverImage}
+            src={project.heroImage || project.coverImage}
             alt={bt(project.title)}
             className="w-full h-full object-cover"
           />
@@ -631,7 +589,7 @@ export default function ProjectDetail() {
                         {section.rowLabel}
                       </p>
                     )}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className={`grid grid-cols-1 gap-4 ${section.images.length - 1 === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
                       {section.images.slice(1).map((img, j) => (
                         <div key={j}>
                           <div className="overflow-hidden rounded-lg aspect-[16/10]">
@@ -705,7 +663,7 @@ export default function ProjectDetail() {
                 ) : section.pdf ? (
                   <PdfViewer file={section.pdf} />
                 ) : section.layout === "side-by-side" ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className={`grid grid-cols-1 gap-4 ${(section.images.length + (section.videos?.length || 0)) === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
                     {section.images.map((img, j) => (
                       <div key={j} className="overflow-hidden rounded-lg">
                         <img

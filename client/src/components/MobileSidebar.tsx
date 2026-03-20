@@ -7,15 +7,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { categories, getProjectsByCategory } from "@/data/projects";
-import { useLanguage, useBiText } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
   const { t } = useLanguage();
-  const bt = useBiText();
 
   const close = () => setOpen(false);
 
@@ -42,22 +40,20 @@ export default function MobileSidebar() {
             {/* Name */}
             <SheetTitle className="mb-4">
               <Link href="/" onClick={close}>
-                <span className="flex items-center gap-2 cursor-pointer">
-                  <img
-                    src="/welcome/yay.png"
-                    alt="Cheryl Liu"
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                  <span className="text-lg font-bold tracking-tight" style={{ color: "#000000" }}>
-                    Cheryl Liu
-                  </span>
+                <span
+                  className="block text-lg font-bold tracking-tight cursor-pointer"
+                  style={{ color: "#000000" }}
+                >
+                  Cheryl Liu
                 </span>
               </Link>
             </SheetTitle>
 
-            {/* Personal links */}
-            <nav className="mb-4 space-y-1">
+            {/* Navigation links */}
+            <nav className="flex-1 space-y-1">
               <MobileLink href="/about" label={t.nav.about} currentPath={location} onNavigate={close} />
+              <MobileLink href="/digital-twin" label={t.nav.digitalTwin} currentPath={location} onNavigate={close} />
+              <MobileLink href="/work" label="Projects" currentPath={location} onNavigate={close} />
               <a
                 href="https://drive.google.com/file/d/1uQ4AufiVTlAWxBflYxHy84frrSmo3jj9/view?usp=drive_link"
                 target="_blank"
@@ -78,46 +74,15 @@ export default function MobileSidebar() {
               >
                 {t.nav.linkedin}
               </a>
+            </nav>
+
+            {/* Language switcher + Copyright */}
+            <div className="mt-auto pt-6">
               <LanguageSwitcher />
-            </nav>
-
-            {/* Category sections */}
-            <nav className="flex-1 space-y-4">
-              {categories.map((cat) => {
-                const catProjects = getProjectsByCategory(cat.id, true);
-                return (
-                  <div key={cat.id}>
-                    <p
-                      className="text-[11px] font-medium tracking-wide uppercase mb-2"
-                      style={{ color: "#999999" }}
-                    >
-                      {bt(cat.label)}
-                    </p>
-                    <div className="space-y-1">
-                      {catProjects.map((project) => (
-                        <MobileLink
-                          key={project.slug}
-                          href={`/projects/${project.slug}`}
-                          label={bt(project.title)}
-                          currentPath={location}
-                          onNavigate={close}
-                        />
-                      ))}
-                      {catProjects.length === 0 && (
-                        <p className="text-xs italic" style={{ color: "#CCCCCC" }}>
-                          {t.nav.comingSoon}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </nav>
-
-            {/* Copyright */}
-            <p className="mt-auto pt-6 text-[11px]" style={{ color: "#999999" }}>
-              {t.nav.copyright}
-            </p>
+              <p className="text-[11px] mt-2" style={{ color: "#999999" }}>
+                {t.nav.copyright}
+              </p>
+            </div>
           </div>
         </SheetContent>
       </Sheet>

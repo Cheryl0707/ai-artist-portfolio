@@ -15,9 +15,6 @@ export default function ProjectsSection() {
         const catProjects = getProjectsByCategory(cat.id);
         if (catProjects.length === 0) return null;
 
-        const featured = catProjects.find((p) => p.featured);
-        const rest = catProjects.filter((p) => !p.featured);
-
         return (
           <div key={cat.id} id={`section-${cat.id}`} className="mb-16">
             {/* Category label */}
@@ -32,26 +29,12 @@ export default function ProjectsSection() {
               {bt(cat.label)}
             </motion.p>
 
-            {/* If there's a featured project: 1 large + rest small */}
-            {featured ? (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                <div className="lg:col-span-2">
-                  <ProjectCard project={featured} size="large" index={0} />
-                </div>
-                <div className="flex flex-col gap-5">
-                  {rest.map((p, i) => (
-                    <ProjectCard key={p.id} project={p} size="small" index={i + 1} />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              /* Even grid for non-featured categories */
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {catProjects.map((p, i) => (
-                  <ProjectCard key={p.id} project={p} size="normal" index={i} />
-                ))}
-              </div>
-            )}
+            {/* 3-column grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {catProjects.map((p, i) => (
+                <ProjectCard key={p.id} project={p} index={i} />
+              ))}
+            </div>
           </div>
         );
       })}
@@ -61,23 +44,14 @@ export default function ProjectsSection() {
 
 function ProjectCard({
   project,
-  size,
   index,
 }: {
   project: Project;
-  size: "large" | "normal" | "small";
   index: number;
 }) {
   const { t } = useLanguage();
   const bt = useBiText();
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const aspectClass =
-    size === "large"
-      ? "aspect-[16/10]"
-      : size === "small"
-        ? "aspect-[16/10]"
-        : "aspect-[4/3]";
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -103,15 +77,22 @@ function ProjectCard({
       onMouseLeave={handleMouseLeave}
     >
       {/* Thumbnail */}
-      <div className={`relative overflow-hidden rounded-lg ${aspectClass} mb-3`} style={{ background: "#EEEEEE" }}>
+      <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-3" style={{ background: "#EEEEEE" }}>
         {/* Cover image */}
         <img
           src={project.coverImage}
           alt={bt(project.title)}
           className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
+          style={project.coverPosition ? { objectPosition: project.coverPosition } : undefined}
         />
-        {/* Video overlay on hover */}
-        {project.coverVideo && (
+        {/* Video/GIF overlay on hover */}
+        {project.coverVideo && project.coverVideo.endsWith(".gif") ? (
+          <img
+            src={project.coverVideo}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          />
+        ) : project.coverVideo ? (
           <video
             ref={videoRef}
             muted
@@ -122,7 +103,7 @@ function ProjectCard({
           >
             <source src={project.coverVideo} type="video/mp4" />
           </video>
-        )}
+        ) : null}
         {/* WIP badge */}
         {project.status === "wip" && (
           <span
@@ -136,7 +117,7 @@ function ProjectCard({
 
       {/* Info */}
       <h3
-        className={`font-bold mb-1 ${size === "large" ? "text-xl" : "text-base"}`}
+        className="text-base font-bold mb-1"
         style={{ color: "#000000" }}
       >
         {bt(project.title)}

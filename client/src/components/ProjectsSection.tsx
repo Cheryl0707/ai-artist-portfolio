@@ -52,6 +52,7 @@ function ProjectCard({
   const { t } = useLanguage();
   const bt = useBiText();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isPlayground = project.category === "google-ai";
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -77,7 +78,10 @@ function ProjectCard({
       onMouseLeave={handleMouseLeave}
     >
       {/* Thumbnail */}
-      <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-3" style={{ background: "#EEEEEE" }}>
+      <div
+        className={`relative overflow-hidden rounded-lg mb-3 ${isPlayground ? "aspect-[16/9]" : "aspect-[4/3]"}`}
+        style={{ background: isPlayground ? "#000000" : "#EEEEEE" }}
+      >
         {/* Cover: autoplay video or static image */}
         {project.coverVideoAutoplay ? (
           <video
@@ -85,7 +89,7 @@ function ProjectCard({
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className={`w-full h-full ${isPlayground ? "object-contain" : "object-cover"}`}
           >
             <source src={project.coverVideoAutoplay} type="video/mp4" />
           </video>
@@ -93,7 +97,7 @@ function ProjectCard({
           <img
             src={project.coverImage}
             alt={bt(project.title)}
-            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
+            className={`w-full h-full ${isPlayground ? "object-contain" : "object-cover"} transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
             style={project.coverPosition ? { objectPosition: project.coverPosition } : undefined}
           />
         )}
@@ -102,7 +106,7 @@ function ProjectCard({
           <img
             src={project.coverVideo}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className={`absolute inset-0 w-full h-full ${isPlayground ? "object-contain" : "object-cover"} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
           />
         ) : project.coverVideo ? (
           <video
@@ -111,7 +115,7 @@ function ProjectCard({
             loop
             playsInline
             preload="none"
-            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className={`absolute inset-0 w-full h-full ${isPlayground ? "object-contain" : "object-cover"} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
           >
             <source src={project.coverVideo} type="video/mp4" />
           </video>

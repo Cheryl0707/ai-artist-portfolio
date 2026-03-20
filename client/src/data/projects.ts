@@ -397,7 +397,7 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
       en: `Character avatar variations designed for Google FLOW, featuring diverse character designs with unique outfits and color palettes.`,
       zh: `为 Google FLOW 设计的角色头像变体，具有多样化的角色设计，每个角色拥有独特的服装和配色方案。`,
     },
-    coverImage: "/images/projects/GAIS/google-avatar-variation.png",
+    coverImage: "/images/projects/GAIS/avatar.png",
     noDetail: true,
     processImages: [],
     tags: [

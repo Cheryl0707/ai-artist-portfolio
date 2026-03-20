@@ -68,7 +68,7 @@ function ProjectCard({
 
   const inner = (
     <motion.div
-      className="group block h-full cursor-pointer"
+      className={`group block h-full ${project.noDetail ? "cursor-default" : "cursor-pointer"}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -78,13 +78,25 @@ function ProjectCard({
     >
       {/* Thumbnail */}
       <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-3" style={{ background: "#EEEEEE" }}>
-        {/* Cover image */}
-        <img
-          src={project.coverImage}
-          alt={bt(project.title)}
-          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
-          style={project.coverPosition ? { objectPosition: project.coverPosition } : undefined}
-        />
+        {/* Cover: autoplay video or static image */}
+        {project.coverVideoAutoplay ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={project.coverVideoAutoplay} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={project.coverImage}
+            alt={bt(project.title)}
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.coverVideo ? "group-hover:opacity-0" : ""}`}
+            style={project.coverPosition ? { objectPosition: project.coverPosition } : undefined}
+          />
+        )}
         {/* Video/GIF overlay on hover */}
         {project.coverVideo && project.coverVideo.endsWith(".gif") ? (
           <img
@@ -127,6 +139,10 @@ function ProjectCard({
       </p>
     </motion.div>
   );
+
+  if (project.noDetail) {
+    return inner;
+  }
 
   return (
     <Link href={`/projects/${project.slug}`}>

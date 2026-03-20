@@ -19,6 +19,8 @@ export interface Project {
   status?: "live" | "wip";
   externalUrl?: string;
   coverPosition?: string;
+  noDetail?: boolean;
+  coverVideoAutoplay?: string;
   roles?: BiText[];
 }
 
@@ -355,8 +357,8 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
   {
     id: "kaleidoscope",
     title: {
-      en: "Kaleidoscope Effects",
-      zh: "万花筒特效",
+      en: "Interactive Kaleidoscope Visualizer",
+      zh: "交互式万花筒可视化",
     },
     description: {
       en: "Vibe-coded generative visual effects used as real-time shooting backgrounds.",
@@ -367,6 +369,8 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
       zh: `通过氛围编程创作的实验性生成式视觉特效——利用 AI 辅助代码生成快速原型化万花筒图案和动态背景。这些实时视觉效果旨在用作视频拍摄的背景，将创意编程与实际影视制作需求相结合。`,
     },
     coverImage: "/images/projects/kaleidoscope/cover.png",
+    coverVideoAutoplay: "/images/projects/kaleidoscope/kaleidoscope-demo.mp4",
+    noDetail: true,
     processImages: [],
     tags: [
       { en: "Vibe Coding", zh: "氛围编程" },

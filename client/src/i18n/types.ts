@@ -4,16 +4,19 @@ export type BiText = { en: string; zh: string };
 
 export interface Translations {
   nav: {
+    work: string;
     about: string;
     resume: string;
     linkedin: string;
     comingSoon: string;
     copyright: string;
+    digitalTwin: string;
   };
   hero: {
     tagline: string;
     tagline2: string;
     subtitle: string;
+    viewAllWork: string;
   };
   projectDetail: {
     backToProjects: string;

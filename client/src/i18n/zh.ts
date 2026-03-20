@@ -2,16 +2,19 @@ import type { Translations } from "./types";
 
 export const zh: Translations = {
   nav: {
-    about: "\u5173\u4e8e",
-    resume: "\u7b80\u5386",
+    work: "作品",
+    about: "关于",
+    resume: "简历",
     linkedin: "LinkedIn",
     comingSoon: "\u5373\u5c06\u4e0a\u7ebf",
     copyright: "\u00A9 2025 Cheryl Liu",
+    digitalTwin: "数字分身",
   },
   hero: {
     tagline: "Cheryl Liu \u7684\u521b\u4f5c\u5904\u4e8e",
     tagline2: "AI \u4e0e\u5f71\u89c6\u5236\u4f5c\u7684\u4ea4\u6c47\u5904\u3002",
     subtitle: "\u6bd5\u4e1a\u4e8e\u7ebd\u7ea6\u5927\u5b66\uff0c\u73b0\u5c45\u5e03\u9c81\u514b\u6797\u3002",
+    viewAllWork: "\u67e5\u770b\u5168\u90e8\u4f5c\u54c1 \u2192",
   },
   projectDetail: {
     backToProjects: "\u8fd4\u56de\u4f5c\u54c1\u96c6",

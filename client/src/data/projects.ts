@@ -369,7 +369,7 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
       zh: `通过氛围编程创作的实验性生成式视觉特效——利用 AI 辅助代码生成快速原型化万花筒图案和动态背景。这些实时视觉效果旨在用作视频拍摄的背景，将创意编程与实际影视制作需求相结合。`,
     },
     coverImage: "/images/projects/kaleidoscope/cover.png",
-    coverVideoAutoplay: "/images/projects/kaleidoscope/kaleidoscope-demo.mp4",
+    coverVideo: "/images/projects/kaleidoscope/kaleidoscope-demo.mp4",
     noDetail: true,
     processImages: [],
     tags: [
@@ -408,6 +408,35 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     tools: ["Google AI Studio", "JavaScript", "WebGL"],
     year: "2025",
     slug: "particle-system",
+    category: "google-ai",
+  },
+
+  {
+    id: "batch-bg-remover",
+    title: {
+      en: "Batch BG Remover",
+      zh: "批量背景移除工具",
+    },
+    description: {
+      en: "A batch background removal tool built with Google AI Studio.",
+      zh: "使用 Google AI Studio 构建的批量背景移除工具。",
+    },
+    fullDescription: {
+      en: `A batch background removal tool built with Google AI Studio, enabling efficient bulk processing of images to remove backgrounds automatically.`,
+      zh: `使用 Google AI Studio 构建的批量背景移除工具，支持高效批量处理图片以自动移除背景。`,
+    },
+    coverImage: "/images/projects/GAIS/cover.png",
+    coverVideo: "/images/projects/GAIS/cover.mp4",
+    noDetail: true,
+    processImages: [],
+    tags: [
+      { en: "Google AI Studio", zh: "Google AI Studio" },
+      { en: "Background Removal", zh: "背景移除" },
+      { en: "Batch Processing", zh: "批量处理" },
+    ],
+    tools: ["Google AI Studio"],
+    year: "2025",
+    slug: "batch-bg-remover",
     category: "google-ai",
   },
 

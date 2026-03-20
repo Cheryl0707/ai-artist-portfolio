@@ -2,16 +2,19 @@ import type { Translations } from "./types";
 
 export const en: Translations = {
   nav: {
+    work: "Work",
     about: "About",
     resume: "Resume",
     linkedin: "LinkedIn",
     comingSoon: "Coming soon",
     copyright: "\u00A9 2025 Cheryl Liu",
+    digitalTwin: "Digital Twin",
   },
   hero: {
     tagline: "Cheryl Liu creates at the",
     tagline2: "intersection of AI and production.",
     subtitle: "Previously at NYU. Based in Brooklyn, NY.",
+    viewAllWork: "View All Work →",
   },
   projectDetail: {
     backToProjects: "Back to Projects",

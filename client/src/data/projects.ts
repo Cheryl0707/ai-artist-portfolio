@@ -82,42 +82,6 @@ The production team constructed a practical brownstone stoop wrapped in checkere
     ],
   },
   {
-    id: "checkers-vp",
-    title: {
-      en: "Checker's & Rally's 25'",
-      zh: "Checker's & Rally's 25'",
-    },
-    description: {
-      en: "Unreal Engine operator for a Checker's & Rally's commercial — built and operated virtual environments on an LED volume stage.",
-      zh: "担任 Checker's & Rally's 广告的 Unreal Engine 操作员——在 LED 虚拟棚中搭建并操控虚拟环境。",
-    },
-    fullDescription: {
-      en: `Worked as Unreal Engine operator on the Checker's and Rally's commercial production. Responsible for building photorealistic virtual restaurant environments in Unreal Engine and operating them live on an LED volume stage during the shoot.
-
-The project involved creating both daytime and nighttime versions of the Checker's restaurant interior, complete with brick walls, checkered tile floor, warm practical lighting, and fully dressed set pieces. During the live shoot, the Unreal Engine environments were displayed on a curved LED volume, allowing actors to perform within the virtual setting — capturing everything in-camera with no green screen compositing required.`,
-      zh: `在 Checker's & Rally's 广告拍摄中担任 Unreal Engine 操作员。负责在 Unreal Engine 中构建逼真的虚拟餐厅环境，并在拍摄期间于 LED 虚拟棚中进行实时操控。
-
-该项目包括制作 Checker's 餐厅内部的日间和夜间两个版本，涵盖砖墙、棋盘格地砖、温暖的实景灯光以及完整的布景陈设。在实拍过程中，Unreal Engine 环境被投射在弧形 LED 屏幕上，让演员在虚拟场景中进行表演——所有画面均为机内实拍合成，无需绿幕后期合成。`,
-    },
-    coverImage: "/images/projects/checkers/unreal-interior-closeup.png",
-    processImages: [],
-    tags: [
-      { en: "Virtual Production", zh: "虚拟制作" },
-      { en: "Unreal Engine", zh: "Unreal Engine" },
-      { en: "LED Volume", zh: "LED 虚拟棚" },
-      { en: "Commercial", zh: "商业广告" },
-    ],
-    tools: ["Unreal Engine", "Maya", "LiveFX Assimilate"],
-    year: "2025",
-    slug: "checkers-vp",
-    category: "gen-production",
-    roles: [
-      { en: "Unreal Engine Environment Artist", zh: "Unreal Engine 环境美术师" },
-      { en: "On-set Engine Operation", zh: "现场引擎操控" },
-    ],
-  },
-
-  {
     id: "new-year",
     title: {
       en: "New Year, New Me",
@@ -189,6 +153,41 @@ Created with Xinyu (Cindy) Li using Runway's AI tools. We used Runway Frames to 
     category: "gen-production",
     roles: [
       { en: "Pre-vis Artist", zh: "预演美术师" },
+    ],
+  },
+  {
+    id: "checkers-vp",
+    title: {
+      en: "Checker's & Rally's 25'",
+      zh: "Checker's & Rally's 25'",
+    },
+    description: {
+      en: "Unreal Engine operator for a Checker's & Rally's commercial — built and operated virtual environments on an LED volume stage.",
+      zh: "担任 Checker's & Rally's 广告的 Unreal Engine 操作员——在 LED 虚拟棚中搭建并操控虚拟环境。",
+    },
+    fullDescription: {
+      en: `Worked as Unreal Engine operator on the Checker's and Rally's commercial production. Responsible for building photorealistic virtual restaurant environments in Unreal Engine and operating them live on an LED volume stage during the shoot.
+
+The project involved creating both daytime and nighttime versions of the Checker's restaurant interior, complete with brick walls, checkered tile floor, warm practical lighting, and fully dressed set pieces. During the live shoot, the Unreal Engine environments were displayed on a curved LED volume, allowing actors to perform within the virtual setting — capturing everything in-camera with no green screen compositing required.`,
+      zh: `在 Checker's & Rally's 广告拍摄中担任 Unreal Engine 操作员。负责在 Unreal Engine 中构建逼真的虚拟餐厅环境，并在拍摄期间于 LED 虚拟棚中进行实时操控。
+
+该项目包括制作 Checker's 餐厅内部的日间和夜间两个版本，涵盖砖墙、棋盘格地砖、温暖的实景灯光以及完整的布景陈设。在实拍过程中，Unreal Engine 环境被投射在弧形 LED 屏幕上，让演员在虚拟场景中进行表演——所有画面均为机内实拍合成，无需绿幕后期合成。`,
+    },
+    coverImage: "/images/projects/checkers/chercker-25-thumbnail.png",
+    processImages: [],
+    tags: [
+      { en: "Virtual Production", zh: "虚拟制作" },
+      { en: "Unreal Engine", zh: "Unreal Engine" },
+      { en: "LED Volume", zh: "LED 虚拟棚" },
+      { en: "Commercial", zh: "商业广告" },
+    ],
+    tools: ["Unreal Engine", "Maya", "LiveFX Assimilate"],
+    year: "2025",
+    slug: "checkers-vp",
+    category: "gen-production",
+    roles: [
+      { en: "Unreal Engine Environment Artist", zh: "Unreal Engine 环境美术师" },
+      { en: "On-set Engine Operation", zh: "现场引擎操控" },
     ],
   },
 

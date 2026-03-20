@@ -111,7 +111,6 @@ The project involved creating both daytime and nighttime versions of the Checker
     year: "2025",
     slug: "checkers-vp",
     category: "gen-production",
-    hidden: true,
     roles: [
       { en: "Unreal Engine Environment Artist", zh: "Unreal Engine 环境美术师" },
       { en: "On-set Engine Operation", zh: "现场引擎操控" },

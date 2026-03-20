@@ -193,46 +193,6 @@ The project involved creating both daytime and nighttime versions of the Checker
 
   // ── Generative Production (continued) ───────────────────
   {
-    id: "sam-adams",
-    title: {
-      en: "Samuel Adam's Pre-visualization",
-      zh: "Samuel Adams 预演",
-    },
-    description: {
-      en: "Client-facing pre-visualization combining Unreal Engine depth & outline passes with ComfyUI generative workflows.",
-      zh: "面向客户的预演方案，将 Unreal Engine 深度与轮廓渲染通道与 ComfyUI 生成式工作流相结合。",
-    },
-    fullDescription: {
-      en: `This project delivers production-ready pre-visualization for Samuel Adam's commercial campaigns (Octoberfest & Juicy IPA). By leveraging Unreal Engine's depth and outline render passes as structural guides, the footage is processed through ComfyUI generative pipelines to produce polished, client-facing visual concepts.
-
-The workflow starts with storyboard sketches defining camera movement and composition, then uses Unreal Engine to generate base renders with depth and outline passes. These passes feed into ComfyUI where relighting, outpainting, and style transfer produce the final photorealistic product shots — all while maintaining precise compositional control that clients can confidently approve.`,
-      zh: `本项目为 Samuel Adams 广告系列（Octoberfest 和 Juicy IPA）提供制作级预演方案。利用 Unreal Engine 的深度与轮廓渲染通道作为结构引导，通过 ComfyUI 生成式流程对画面进行处理，产出精美的面向客户的视觉概念。
-
-工作流程从分镜草图开始，确定镜头运动与构图，随后使用 Unreal Engine 生成带有深度和轮廓通道的基础渲染。这些通道输入 ComfyUI，通过重新打光、外扩绘制和风格迁移生成最终的逼真产品画面——同时保持精确的构图控制，使客户可以放心审批。`,
-    },
-    coverImage: "/images/projects/sam-adams/cover-static.png",
-    coverVideo: "/images/projects/sam-adams/cover.gif",
-    heroImage: "/images/projects/sam-adams/detail-hero.png",
-    processImages: [
-      "/images/projects/sam-adams/hero.png",
-      "/images/projects/sam-adams/storyboard-dolly.png",
-      "/images/projects/sam-adams/camera-moves.png",
-      "/images/projects/sam-adams/workflow-relit.png",
-      "/images/projects/sam-adams/outpaint-before.png",
-      "/images/projects/sam-adams/outpaint-after.png",
-    ],
-    tags: [
-      { en: "Unreal Engine", zh: "Unreal Engine" },
-      { en: "ComfyUI", zh: "ComfyUI" },
-      { en: "Pre-vis", zh: "预演" },
-    ],
-    tools: ["Unreal Engine", "ComfyUI"],
-    year: "2025",
-    slug: "samuel-adams-previs",
-    category: "gen-production",
-    featured: true,
-  },
-  {
     id: "ritz",
     title: {
       en: "Ritz Commercial Pre-vis",
@@ -273,6 +233,46 @@ The project explores both static product shots and video generation conditioning
     year: "2024",
     slug: "ritz",
     category: "gen-production",
+  },
+  {
+    id: "sam-adams",
+    title: {
+      en: "Samuel Adam's Pre-visualization",
+      zh: "Samuel Adams 预演",
+    },
+    description: {
+      en: "Client-facing pre-visualization combining Unreal Engine depth & outline passes with ComfyUI generative workflows.",
+      zh: "面向客户的预演方案，将 Unreal Engine 深度与轮廓渲染通道与 ComfyUI 生成式工作流相结合。",
+    },
+    fullDescription: {
+      en: `This project delivers production-ready pre-visualization for Samuel Adam's commercial campaigns (Octoberfest & Juicy IPA). By leveraging Unreal Engine's depth and outline render passes as structural guides, the footage is processed through ComfyUI generative pipelines to produce polished, client-facing visual concepts.
+
+The workflow starts with storyboard sketches defining camera movement and composition, then uses Unreal Engine to generate base renders with depth and outline passes. These passes feed into ComfyUI where relighting, outpainting, and style transfer produce the final photorealistic product shots — all while maintaining precise compositional control that clients can confidently approve.`,
+      zh: `本项目为 Samuel Adams 广告系列（Octoberfest 和 Juicy IPA）提供制作级预演方案。利用 Unreal Engine 的深度与轮廓渲染通道作为结构引导，通过 ComfyUI 生成式流程对画面进行处理，产出精美的面向客户的视觉概念。
+
+工作流程从分镜草图开始，确定镜头运动与构图，随后使用 Unreal Engine 生成带有深度和轮廓通道的基础渲染。这些通道输入 ComfyUI，通过重新打光、外扩绘制和风格迁移生成最终的逼真产品画面——同时保持精确的构图控制，使客户可以放心审批。`,
+    },
+    coverImage: "/images/projects/sam-adams/cover-static.png",
+    coverVideo: "/images/projects/sam-adams/cover.gif",
+    heroImage: "/images/projects/sam-adams/detail-hero.png",
+    processImages: [
+      "/images/projects/sam-adams/hero.png",
+      "/images/projects/sam-adams/storyboard-dolly.png",
+      "/images/projects/sam-adams/camera-moves.png",
+      "/images/projects/sam-adams/workflow-relit.png",
+      "/images/projects/sam-adams/outpaint-before.png",
+      "/images/projects/sam-adams/outpaint-after.png",
+    ],
+    tags: [
+      { en: "Unreal Engine", zh: "Unreal Engine" },
+      { en: "ComfyUI", zh: "ComfyUI" },
+      { en: "Pre-vis", zh: "预演" },
+    ],
+    tools: ["Unreal Engine", "ComfyUI"],
+    year: "2025",
+    slug: "samuel-adams-previs",
+    category: "gen-production",
+    featured: true,
   },
 
   // ── Automation Workflows ─────────────────────────────────

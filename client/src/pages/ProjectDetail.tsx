@@ -296,7 +296,6 @@ const projectSections: Record<string, Section[]> = {
         "/images/projects/GAIS/avatar/variations/Frame 11.png",
         "/images/projects/GAIS/avatar/variations/Frame 12.png",
         "/images/projects/GAIS/avatar/variations/Frame 13.png",
-        "/images/projects/GAIS/avatar/variations/Frame 14.png",
         "/images/projects/GAIS/avatar/variations/Frame 15.png",
         "/images/projects/GAIS/avatar/variations/Frame 16.png",
         "/images/projects/GAIS/avatar/variations/Frame 17.png",

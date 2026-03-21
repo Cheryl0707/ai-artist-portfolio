@@ -231,6 +231,25 @@ const projectSections: Record<string, Section[]> = {
       youtube: "SSRWmZ4nRZ0",
     },
     {
+      label: { en: "3D Assets Preparation", zh: "3D 素材准备" },
+      description: { en: "", zh: "" },
+      images: ["/images/projects/panera/prepare-3d-assets.JPG"],
+      layout: "full",
+    },
+    {
+      label: { en: "Flair Animation", zh: "Flair 动画" },
+      description: { en: "", zh: "" },
+      images: ["/images/projects/panera/connect-flair-moco-animate.JPG"],
+      layout: "full",
+    },
+    {
+      label: { en: "Visualization", zh: "视频呈现" },
+      description: { en: "", zh: "" },
+      images: [],
+      videos: ["/images/projects/panera/visualize.mp4"],
+      layout: "full",
+    },
+    {
       label: { en: "Pre-vis vs. Final", zh: "预演 vs. 最终成片" },
       description: {
         en: "Side-by-side comparison of my Unreal Engine pre-visualization and the final commercial footage.",

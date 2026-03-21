@@ -304,6 +304,16 @@ const projectSections: Record<string, Section[]> = {
       ],
       layout: "side-by-side",
     },
+    {
+      label: { en: "Batch Separate & Remove Background", zh: "批量分离与背景移除" },
+      description: {
+        en: "After generating many characters, I built a workflow to efficiently separate individual figures from group compositions and remove their backgrounds in batch.",
+        zh: "在生成大量角色之后，我搭建了一套工作流来高效地将小人从群组构图中逐个分离，并批量移除背景。",
+      },
+      images: [],
+      videos: ["/images/projects/GAIS/avatar/batch-separate-remove-bg.mp4"],
+      layout: "full",
+    },
   ],
   "checkers-vp": [
     {

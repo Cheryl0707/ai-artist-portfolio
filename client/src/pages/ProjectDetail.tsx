@@ -267,6 +267,45 @@ const projectSections: Record<string, Section[]> = {
       layout: "full",
     },
   ],
+  "google-flow-avatars": [
+    {
+      label: { en: "Original Character Design", zh: "原创角色设计" },
+      description: {
+        en: "Hand-drawn character base forms in Procreate — establishing the core body proportions, facial features, and line style that define the avatar system.",
+        zh: "在 Procreate 中手绘角色基础形态——确立定义头像系统的核心身体比例、面部特征和线条风格。",
+      },
+      images: [
+        "/images/projects/GAIS/avatar/designed/Frame 21.png",
+        "/images/projects/GAIS/avatar/designed/Frame 22.png",
+        "/images/projects/GAIS/avatar/designed/Frame 23.png",
+        "/images/projects/GAIS/avatar/designed/Frame 24.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "AI-Generated Pose & Style Variations", zh: "AI 生成的姿势与风格变体" },
+      description: {
+        en: "Fed the original Procreate drawings into Google AI Studio to generate style-consistent variations — different poses, actions, and interactions while maintaining the same character identity and line quality.",
+        zh: "将原始 Procreate 手绘输入 Google AI Studio，生成风格一致的变体——不同的姿势、动作和互动，同时保持相同的角色特征和线条质感。",
+      },
+      images: [
+        "/images/projects/GAIS/avatar/variations/Frame 7.png",
+        "/images/projects/GAIS/avatar/variations/Frame 8.png",
+        "/images/projects/GAIS/avatar/variations/Frame 9.png",
+        "/images/projects/GAIS/avatar/variations/Frame 10.png",
+        "/images/projects/GAIS/avatar/variations/Frame 11.png",
+        "/images/projects/GAIS/avatar/variations/Frame 12.png",
+        "/images/projects/GAIS/avatar/variations/Frame 13.png",
+        "/images/projects/GAIS/avatar/variations/Frame 14.png",
+        "/images/projects/GAIS/avatar/variations/Frame 15.png",
+        "/images/projects/GAIS/avatar/variations/Frame 16.png",
+        "/images/projects/GAIS/avatar/variations/Frame 17.png",
+        "/images/projects/GAIS/avatar/variations/Frame 18.png",
+        "/images/projects/GAIS/avatar/variations/Frame 19.png",
+      ],
+      layout: "side-by-side",
+    },
+  ],
   "checkers-vp": [
     {
       label: { en: "Final Commercial", zh: "最终广告片" },
@@ -705,7 +744,7 @@ export default function ProjectDetail() {
                 ) : section.pdf ? (
                   <PdfViewer file={section.pdf} />
                 ) : section.layout === "side-by-side" ? (
-                  <div className={`grid grid-cols-1 gap-4 ${(section.images.length + (section.videos?.length || 0)) === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+                  <div className={`grid grid-cols-1 gap-4 ${(() => { const total = section.images.length + (section.videos?.length || 0); if (total >= 4) return "md:grid-cols-4"; if (total === 3) return "md:grid-cols-3"; return "md:grid-cols-2"; })()}`}>
                     {section.images.map((img, j) => (
                       <div key={j} className="overflow-hidden rounded-lg">
                         <img

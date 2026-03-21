@@ -18,7 +18,7 @@ interface Section {
   rowCaption?: BiText;
   rowLabel?: string;
   videos?: string[];
-  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row";
+  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text";
   youtube?: string;
   pdf?: string;
   extraRows?: { label: string; items: { type: "image" | "video"; src: string; caption?: (string | BiText) }[] }[];
@@ -224,32 +224,6 @@ const projectSections: Record<string, Section[]> = {
   ],
   "panera-mix-and-match": [
     {
-      label: { en: "Commercial", zh: "广告片" },
-      description: { en: "", zh: "" },
-      images: [],
-      layout: "full",
-      youtube: "SSRWmZ4nRZ0",
-    },
-    {
-      label: { en: "3D Assets Preparation", zh: "3D 素材准备" },
-      description: { en: "", zh: "" },
-      images: ["/images/projects/panera/prepare-3d-assets.JPG"],
-      layout: "full",
-    },
-    {
-      label: { en: "Flair Animation", zh: "Flair 动画" },
-      description: { en: "", zh: "" },
-      images: ["/images/projects/panera/connect-flair-moco-animate.JPG"],
-      layout: "full",
-    },
-    {
-      label: { en: "Visualization", zh: "视频呈现" },
-      description: { en: "", zh: "" },
-      images: [],
-      videos: ["/images/projects/panera/visualize.mp4"],
-      layout: "full",
-    },
-    {
       label: { en: "Pre-vis vs. Final", zh: "预演 vs. 最终成片" },
       description: {
         en: "Side-by-side comparison of my Unreal Engine pre-visualization and the final commercial footage.",
@@ -266,6 +240,31 @@ const projectSections: Record<string, Section[]> = {
       images: [],
       videos: ["/images/projects/panera/camera-10.mp4", "/images/projects/panera/camera-14.mp4"],
       layout: "side-by-side",
+    },
+    {
+      label: { en: "3D Assets Preparation", zh: "3D 素材准备" },
+      description: {
+        en: "Preparing and organizing 3D assets in Unreal Engine for the virtual production environment.",
+        zh: "在 Unreal Engine 中准备和组织用于虚拟制作环境的 3D 素材。",
+      },
+      images: ["/images/projects/panera/prepare-3d-assets.JPG"],
+      layout: "image-text",
+    },
+    {
+      label: { en: "Flair Animation", zh: "Flair 动画" },
+      description: {
+        en: "Connecting Flair with MoCo for automated camera animation and motion control integration.",
+        zh: "将 Flair 与 MoCo 连接，实现自动化摄像机动画和运动控制集成。",
+      },
+      images: ["/images/projects/panera/connect-flair-moco-animate.JPG"],
+      layout: "image-text",
+    },
+    {
+      label: { en: "Visualization", zh: "视频呈现" },
+      description: { en: "", zh: "" },
+      images: [],
+      videos: ["/images/projects/panera/visualize.mp4"],
+      layout: "full",
     },
   ],
   "checkers-vp": [
@@ -572,11 +571,28 @@ export default function ProjectDetail() {
                 <h2 className="text-2xl font-bold mb-3" style={{ color: "#000000" }}>
                   {bt(section.label)}
                 </h2>
-                <p className="text-base leading-relaxed mb-6 max-w-3xl" style={{ color: "#666666" }}>
-                  {bt(section.description)}
-                </p>
+                {section.layout !== "image-text" && (
+                  <p className="text-base leading-relaxed mb-6 max-w-3xl" style={{ color: "#666666" }}>
+                    {bt(section.description)}
+                  </p>
+                )}
 
-                {section.layout === "video-hero-plus-row" ? (
+                {section.layout === "image-text" ? (
+                  <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8 items-start">
+                    <div className="overflow-hidden rounded-lg">
+                      <img
+                        src={section.images[0]}
+                        alt={bt(section.label)}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-base leading-relaxed" style={{ color: "#666666" }}>
+                        {bt(section.description)}
+                      </p>
+                    </div>
+                  </div>
+                ) : section.layout === "video-hero-plus-row" ? (
                   <div className="space-y-4">
                     {section.videos?.[0] && (
                       <div className="overflow-hidden rounded-lg">

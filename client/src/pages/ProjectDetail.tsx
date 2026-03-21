@@ -241,6 +241,13 @@ const projectSections: Record<string, Section[]> = {
       captions: ["Pre-vis (Unreal Engine)", "Final"],
       layout: "side-by-side",
     },
+    {
+      label: { en: "Other Camera Movements", zh: "其他运镜" },
+      description: { en: "", zh: "" },
+      images: [],
+      videos: ["/images/projects/panera/camera-10.mp4", "/images/projects/panera/camera-11.mp4"],
+      layout: "side-by-side",
+    },
   ],
   "checkers-vp": [
     {

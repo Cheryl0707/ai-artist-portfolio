@@ -426,7 +426,6 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     },
     coverImage: "/images/projects/ocean/ocean.png",
     coverVideo: "/images/projects/ocean/kylie00004881.mp4",
-    coverVideoAutoplay: "true",
     processImages: [],
     tags: [
       { en: "Jewelry Shoot", zh: "珠宝拍摄" },
@@ -460,6 +459,7 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     coverImage: "/images/projects/GAIS/cover.png",
     coverVideo: "/images/projects/GAIS/cover.mp4",
     noDetail: true,
+    hidden: true,
     processImages: [],
     tags: [
       { en: "Google AI Studio", zh: "Google AI Studio" },

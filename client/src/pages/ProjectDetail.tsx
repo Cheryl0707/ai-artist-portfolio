@@ -18,7 +18,7 @@ interface Section {
   rowCaption?: BiText;
   rowLabel?: string;
   videos?: string[];
-  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text";
+  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text" | "marquee";
   youtube?: string;
   pdf?: string;
   extraRows?: { label: string; items: { type: "image" | "video"; src: string; caption?: (string | BiText) }[] }[];
@@ -70,10 +70,10 @@ const projectSections: Record<string, Section[]> = {
   ],
   ritz: [
     {
-      label: { en: "First Version — Without AI", zh: "第一版——无 AI" },
+      label: { en: "Client-facing Previs", zh: "面向客户的预演" },
       description: {
-        en: "The initial pre-visualization pass created without any AI generation — establishing the base composition and camera work before introducing the AI pipeline.",
-        zh: "在引入 AI 管线之前创建的初始预演版本——建立基础构图和镜头运动。",
+        en: "Client-facing pre-visualization built in Unreal Engine — establishing the base composition, camera work, and virtual environment before introducing the AI pipeline.",
+        zh: "在 Unreal Engine 中构建的面向客户的预演——在引入 AI 管线之前建立基础构图、镜头运动和虚拟环境。",
       },
       images: [],
       videos: ["/images/projects/ritz/ritz-v1-no-ai.mp4"],
@@ -91,6 +91,39 @@ const projectSections: Record<string, Section[]> = {
         "/images/projects/ritz/pass-depth-anim.gif",
       ],
       layout: "side-by-side",
+    },
+    {
+      label: { en: "AI-Generated Video Output", zh: "AI 生成视频输出" },
+      description: {
+        en: "Final AI-generated video output produced using AnimateDiff, conditioned by the Unreal Engine render passes.",
+        zh: "使用 AnimateDiff 生成的最终 AI 视频输出，以 Unreal Engine 渲染通道作为条件控制。",
+      },
+      images: [],
+      videos: ["/images/projects/ritz/ritz-animatediff.mp4"],
+      layout: "full",
+    },
+  ],
+  ocean: [
+    {
+      label: { en: "Jewelry Shoot", zh: "珠宝拍摄" },
+      description: {
+        en: "Jewelry shoot for designer Kylie Lu. LED Wall Tech & Flair motion control by Chris Jost.",
+        zh: "珠宝设计师 Kylie Lu 的珠宝拍摄。LED 墙技术与 Flair 运动控制由 Chris Jost 负责。",
+      },
+      images: [],
+      videos: [
+        "/images/projects/ocean/kylie00004881.mp4",
+        "/images/projects/ocean/kylie01974803.mp4",
+        "/images/projects/ocean/kylie02033690.mp4",
+        "/images/projects/ocean/kylie02020686.mp4",
+        "/images/projects/ocean/kylie00012118.mp4",
+        "/images/projects/ocean/kylie00011803.mp4",
+        "/images/projects/ocean/kylie01944765.mp4",
+        "/images/projects/ocean/kylie01944650.mp4",
+        "/images/projects/ocean/kylie02038962.mp4",
+        "/images/projects/ocean/kylie01815979.mp4",
+      ],
+      layout: "full",
     },
   ],
   "new-year-new-me": [
@@ -314,6 +347,67 @@ const projectSections: Record<string, Section[]> = {
       videos: ["/images/projects/GAIS/avatar/batch-separate-remove-bg.mp4"],
       layout: "full",
     },
+    {
+      label: { en: "Different Avatars", zh: "不同头像" },
+      description: {
+        en: "A collection of all the individual avatars generated and separated through the pipeline — each with unique poses, styles, and personalities.",
+        zh: "通过管线生成并分离的所有独立头像合集——每个都有独特的姿势、风格和个性。",
+      },
+      images: [
+        "/images/projects/GAIS/avatar/different avatars/Cheryl.png",
+        "/images/projects/GAIS/avatar/different avatars/christine.png",
+        "/images/projects/GAIS/avatar/different avatars/dan.png",
+        "/images/projects/GAIS/avatar/different avatars/dylan.png",
+        "/images/projects/GAIS/avatar/different avatars/james.png",
+        "/images/projects/GAIS/avatar/different avatars/kb.png",
+        "/images/projects/GAIS/avatar/different avatars/yoshi.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (1)-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (1)-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (1)-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (2)-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (2)-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (2)-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223 (2)-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181223-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181224 (1)-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181224 (1)-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181224 (1)-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181224 (1)-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-10 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-6 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-7 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-8 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225 (1)-avatar-9 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181225-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181226-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181226-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181226-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181226-avatar-5 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181228-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181228-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181228-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181230 (2)-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181230 (2)-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181230 (2)-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_help_me_to_202603181230 (2)-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181224-avatar-1 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181224-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181224-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181224-avatar-4 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181227-avatar-2 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181227-avatar-3 1 1.png",
+        "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181227-avatar-5 1 1.png",
+      ],
+      layout: "marquee",
+    },
   ],
   "checkers-vp": [
     {
@@ -353,6 +447,13 @@ const projectSections: Record<string, Section[]> = {
     },
   ],
   "email-agent": [
+    {
+      label: { en: "Project Manual", zh: "项目手册" },
+      description: { en: "", zh: "" },
+      images: [],
+      layout: "full",
+      pdf: "/images/projects/emailagent/email-agent-manual.pdf",
+    },
     {
       label: { en: "Fetch Single Email", zh: "获取单封邮件" },
       description: {
@@ -394,11 +495,13 @@ const projectSections: Record<string, Section[]> = {
       layout: "full",
     },
     {
-      label: { en: "Project Manual", zh: "项目手册" },
-      description: { en: "", zh: "" },
-      images: [],
+      label: { en: "Large-Thread Treatment", zh: "大型邮件线程处理" },
+      description: {
+        en: "Sometimes when the back-and-forth messages exceed 80, it challenges the n8n workflow. But this is usual in production scenarios when details need to be discussed clearly.",
+        zh: "当来回消息超过 80 条时，会对 n8n 工作流构成挑战。但这在生产环境中是常见的场景——当细节需要被充分讨论时。",
+      },
+      images: ["/images/projects/emailagent/largeThread.png"],
       layout: "full",
-      pdf: "/images/projects/emailagent/email-agent-manual.pdf",
     },
   ],
   "particle-system": [
@@ -527,7 +630,7 @@ export default function ProjectDetail() {
         <motion.button
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          onClick={() => setLocation("/")}
+          onClick={() => setLocation("/work")}
           className="flex items-center gap-2 text-sm font-medium mb-10 hover:opacity-70 transition-opacity"
           style={{ color: "#2672E4" }}
         >
@@ -638,6 +741,19 @@ export default function ProjectDetail() {
                       <p className="text-base leading-relaxed" style={{ color: "#666666" }}>
                         {bt(section.description)}
                       </p>
+                    </div>
+                  </div>
+                ) : section.layout === "marquee" ? (
+                  <div className="overflow-hidden rounded-lg py-4" style={{ background: "#F8F8F7" }}>
+                    <div className="marquee-track flex items-center gap-6">
+                      {[...section.images, ...section.images].map((img, j) => (
+                        <img
+                          key={j}
+                          src={img}
+                          alt={`avatar ${j + 1}`}
+                          className="h-56 w-auto flex-shrink-0 object-contain"
+                        />
+                      ))}
                     </div>
                   </div>
                 ) : section.layout === "video-hero-plus-row" ? (

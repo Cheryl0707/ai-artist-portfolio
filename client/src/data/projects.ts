@@ -405,11 +405,44 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
       { en: "Google FLOW", zh: "Google FLOW" },
     ],
     tools: ["Google AI Studio", "Procreate"],
-    year: "2025",
+    year: "2026",
     slug: "google-flow-avatars",
     category: "google-ai",
   },
 
+  {
+    id: "ocean",
+    title: {
+      en: "Ocean",
+      zh: "Ocean",
+    },
+    description: {
+      en: "Jewelry shoot for designer Kylie Lu — LED wall environments and Flair motion control.",
+      zh: "珠宝设计师 Kylie Lu 的珠宝拍摄——LED 墙环境与 Flair 运动控制。",
+    },
+    fullDescription: {
+      en: `A jewelry shoot for designer Kylie Lu, combining LED wall virtual environments with Flair motion control to capture cinematic product shots. LED Wall Tech & Flair motion control by Chris Jost.`,
+      zh: `为珠宝设计师 Kylie Lu 拍摄的珠宝广告，将 LED 墙虚拟环境与 Flair 运动控制相结合，拍摄电影级产品镜头。LED 墙技术与 Flair 运动控制由 Chris Jost 负责。`,
+    },
+    coverImage: "/images/projects/ocean/ocean.png",
+    coverVideo: "/images/projects/ocean/kylie00004881.mp4",
+    coverVideoAutoplay: "true",
+    processImages: [],
+    tags: [
+      { en: "Jewelry Shoot", zh: "珠宝拍摄" },
+      { en: "LED Wall", zh: "LED 墙" },
+      { en: "Motion Control", zh: "运动控制" },
+    ],
+    tools: ["LED Volume", "Flair Motion Control"],
+    year: "2025",
+    slug: "ocean",
+    category: "google-ai",
+    roles: [
+      { en: "Director", zh: "导演" },
+      { en: "DoP", zh: "摄影指导" },
+      { en: "Producer", zh: "制片人" },
+    ],
+  },
   {
     id: "batch-bg-remover",
     title: {

@@ -8,7 +8,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="hidden md:flex fixed top-0 left-0 h-screen w-[220px] flex-col px-6 py-8 overflow-y-auto z-40"
+      className="hidden md:flex fixed top-0 left-0 h-screen w-[220px] flex-col justify-center px-6 py-8 overflow-y-auto z-40"
       style={{ background: "#F8F8F7", borderRight: "1px solid #E5E5E4" }}
     >
       {/* Name */}
@@ -30,7 +30,7 @@ export default function Sidebar() {
           href="https://drive.google.com/file/d/1kC-ysU_-9jNE6NgyOyVGjIBr8-VdRX7L/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-sm py-1 mt-[2px] transition-opacity hover:opacity-70"
+          className="block text-sm py-1 mt-[1px] transition-opacity hover:opacity-70"
           style={{ color: "#666666" }}
         >
           {t.nav.resume}
@@ -39,7 +39,7 @@ export default function Sidebar() {
           href="https://www.linkedin.com/in/cheryl-liu-3928ba1ab"
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-sm py-1 transition-opacity hover:opacity-70"
+          className="block text-sm py-1 -mt-[2px] transition-opacity hover:opacity-70"
           style={{ color: "#666666" }}
         >
           {t.nav.linkedin}

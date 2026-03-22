@@ -455,44 +455,32 @@ const projectSections: Record<string, Section[]> = {
       pdf: "/images/projects/emailagent/email-agent-manual.pdf",
     },
     {
-      label: { en: "Fetch Single Email", zh: "获取单封邮件" },
-      description: {
-        en: "Retrieve and parse a single email by ID — the agent extracts sender, subject, body, and attachments automatically.",
-        zh: "通过 ID 获取并解析单封邮件——代理自动提取发件人、主题、正文和附件。",
-      },
+      label: { en: "Fetch Email History Workflow", zh: "获取邮件历史工作流" },
+      description: { en: "", zh: "" },
       images: [],
-      videos: ["/images/projects/emailagent/fetch-single-email.mp4"],
-      layout: "full",
+      videos: [
+        "/images/projects/emailagent/fetch-single-email.mp4",
+        "/images/projects/emailagent/fetch-group-email.mp4",
+      ],
+      captions: [
+        { en: "Fetch Single Email — Retrieve and parse a single email by ID, the agent extracts sender, subject, body, and attachments automatically.", zh: "获取单封邮件 — 通过 ID 获取并解析单封邮件，代理自动提取发件人、主题、正文和附件。" },
+        { en: "Fetch Group Emails — Batch-fetch emails from a label or search query, with structured summaries for each message.", zh: "批量获取邮件 — 从标签或搜索条件批量获取邮件，为每封邮件生成结构化摘要。" },
+      ],
+      layout: "side-by-side",
     },
     {
-      label: { en: "Fetch Group Emails", zh: "批量获取邮件" },
-      description: {
-        en: "Batch-fetch emails from a label or search query, with structured summaries for each message.",
-        zh: "从标签或搜索条件批量获取邮件，为每封邮件生成结构化摘要。",
-      },
+      label: { en: "Draft Email Workflows", zh: "邮件起草工作流" },
+      description: { en: "", zh: "" },
       images: [],
-      videos: ["/images/projects/emailagent/fetch-group-email.mp4"],
-      layout: "full",
-    },
-    {
-      label: { en: "Help Me Draft", zh: "辅助起草" },
-      description: {
-        en: "AI-assisted drafting — describe what you want to say, and the agent composes a polished email draft.",
-        zh: "AI 辅助起草——描述你想表达的内容，代理即可生成一封完善的邮件草稿。",
-      },
-      images: [],
-      videos: ["/images/projects/emailagent/help-me-draft.mp4"],
-      layout: "full",
-    },
-    {
-      label: { en: "Draft with Template", zh: "模板起草" },
-      description: {
-        en: "Generate drafts from reusable templates — fill in key variables and let the agent handle formatting and tone.",
-        zh: "基于可复用模板生成草稿——填入关键变量，代理负责格式和语气。",
-      },
-      images: [],
-      videos: ["/images/projects/emailagent/draft-with-template.mp4"],
-      layout: "full",
+      videos: [
+        "/images/projects/emailagent/help-me-draft.mp4",
+        "/images/projects/emailagent/draft-with-template.mp4",
+      ],
+      captions: [
+        { en: "Help Me Draft — Describe what you want to say, and the agent composes a polished email draft.", zh: "辅助起草 — 描述你想表达的内容，代理即可生成一封完善的邮件草稿。" },
+        { en: "Draft with Template — Generate drafts from reusable templates, fill in key variables and let the agent handle formatting and tone.", zh: "模板起草 — 基于可复用模板生成草稿，填入关键变量，代理负责格式和语气。" },
+      ],
+      layout: "side-by-side",
     },
     {
       label: { en: "Large-Thread Treatment", zh: "大型邮件线程处理" },

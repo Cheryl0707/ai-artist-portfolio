@@ -27,7 +27,7 @@ export default function Sidebar() {
         <SidebarLink href="/digital-twin" label={t.nav.digitalTwin} currentPath={location} />
         <SidebarLink href="/work" label="Projects" currentPath={location} />
         <a
-          href="https://drive.google.com/file/d/1kC-ysU_-9jNE6NgyOyVGjIBr8-VdRX7L/view?usp=sharing"
+          href="https://drive.google.com/file/d/11FjgMzF8O3qYas2kvemJc72Oh4zqvTcs/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="block text-sm py-1 mt-[1px] transition-opacity hover:opacity-70"

@@ -12,7 +12,7 @@ export default function ContactSection() {
   const socialLinks = [
     { icon: Linkedin, label: "LinkedIn", handle: "Cheryl Liu", href: "https://www.linkedin.com/in/cheryl-liu-3928ba1ab" },
     { icon: Mail, label: t.contact.emailLabel, handle: "cherylrj0707@gmail.com", href: "mailto:cherylrj0707@gmail.com" },
-    { icon: FileText, label: t.nav.resume, handle: t.contact.resumeHandle, href: "https://drive.google.com/file/d/1kC-ysU_-9jNE6NgyOyVGjIBr8-VdRX7L/view?usp=sharing" },
+    { icon: FileText, label: t.nav.resume, handle: t.contact.resumeHandle, href: "https://drive.google.com/file/d/11FjgMzF8O3qYas2kvemJc72Oh4zqvTcs/view?usp=sharing" },
   ];
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);

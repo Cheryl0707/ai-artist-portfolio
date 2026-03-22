@@ -872,11 +872,10 @@ export default function ProjectDetail() {
                         <div className="overflow-hidden rounded-lg">
                           <video
                             src={vid}
-                            autoPlay
-                            muted
-                            loop
+                            controls
                             playsInline
-                            className="w-full h-auto object-cover"
+                            preload="metadata"
+                            className="w-full h-auto"
                           />
                         </div>
                         {section.captions?.[j] && (

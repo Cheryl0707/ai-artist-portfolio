@@ -492,6 +492,15 @@ const projectSections: Record<string, Section[]> = {
       layout: "full",
     },
   ],
+  "parallax-ai": [
+    {
+      label: { en: "Process Walkthrough", zh: "过程说明" },
+      description: { en: "", zh: "" },
+      images: [],
+      layout: "full",
+      youtube: "lBtMf9gbO04",
+    },
+  ],
   "particle-system": [
     {
       label: { en: "Demo", zh: "演示" },

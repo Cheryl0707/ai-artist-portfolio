@@ -292,7 +292,7 @@ The workflow starts with storyboard sketches defining camera movement and compos
       en: `An AI-powered automation platform currently under active development.`,
       zh: `一个 AI 驱动的自动化平台，目前正在积极开发中。`,
     },
-    coverImage: "/images/projects/parallax-placeholder.jpg",
+    coverImage: "/images/projects/parallax-cover.png",
     processImages: [],
     tags: [
       { en: "AI", zh: "AI" },

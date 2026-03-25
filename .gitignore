@@ -105,6 +105,9 @@ temp/
 *.sqlite
 *.sqlite3
 
+# Large media source files
+*.mov
+
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
 .vercel

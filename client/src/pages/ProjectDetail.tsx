@@ -131,8 +131,8 @@ const projectSections: Record<string, Section[]> = {
       label: { en: "Film", zh: "影片" },
       description: { en: "", zh: "" },
       images: [],
+      videos: ["/images/projects/nynm/new-year-new-me.mp4"],
       layout: "full",
-      youtube: "TSMVzrD14NM",
     },
     {
       label: { en: "The Mountain", zh: "那座山" },

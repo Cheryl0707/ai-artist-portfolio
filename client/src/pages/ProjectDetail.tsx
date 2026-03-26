@@ -257,6 +257,13 @@ const projectSections: Record<string, Section[]> = {
   ],
   "panera-mix-and-match": [
     {
+      label: { en: "Final Commercial", zh: "最终广告片" },
+      description: { en: "", zh: "" },
+      images: [],
+      layout: "full",
+      youtube: "Ak4VzX5NHKY",
+    },
+    {
       label: { en: "Pre-vis vs. Final", zh: "预演 vs. 最终成片" },
       description: {
         en: "Side-by-side comparison of my Unreal Engine pre-visualization and the final commercial footage.",

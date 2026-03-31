@@ -9,7 +9,7 @@ export const zh: Translations = {
     comingSoon: "\u5373\u5c06\u4e0a\u7ebf",
     copyright: "\u00A9 2025 Cheryl Liu",
     digitalTwin: "数字分身",
-    gallery: "AIGC Gallery",
+    gallery: "Gallery",
   },
   hero: {
     tagline: "Cheryl Liu \u7684\u521b\u4f5c\u5904\u4e8e",

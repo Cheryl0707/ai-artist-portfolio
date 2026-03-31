@@ -9,7 +9,7 @@ export const en: Translations = {
     comingSoon: "Coming soon",
     copyright: "\u00A9 2025 Cheryl Liu",
     digitalTwin: "Digital Twin",
-    gallery: "AIGC Gallery",
+    gallery: "Gallery",
   },
   hero: {
     tagline: "Cheryl Liu creates at the",

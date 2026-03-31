@@ -83,8 +83,8 @@ export default function Gallery() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex-1 flex flex-col justify-center gap-4 overflow-hidden pb-12"
       >
-        <MarqueeRow images={row1} direction="left" duration={50} />
-        <MarqueeRow images={row2} direction="right" duration={55} />
+        <MarqueeRow images={row1} direction="left" duration={60} />
+        <MarqueeRow images={row2} direction="right" duration={66} />
       </motion.div>
     </div>
   );

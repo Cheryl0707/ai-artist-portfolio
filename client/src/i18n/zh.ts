@@ -9,6 +9,7 @@ export const zh: Translations = {
     comingSoon: "\u5373\u5c06\u4e0a\u7ebf",
     copyright: "\u00A9 2025 Cheryl Liu",
     digitalTwin: "数字分身",
+    gallery: "AIGC Gallery",
   },
   hero: {
     tagline: "Cheryl Liu \u7684\u521b\u4f5c\u5904\u4e8e",
@@ -50,6 +51,9 @@ export const zh: Translations = {
     sendingButton: "\u53d1\u9001\u4e2d...",
     successToast: "\u6d88\u606f\u5df2\u53d1\u9001\uff01\u6211\u4f1a\u572848\u5c0f\u65f6\u5185\u56de\u590d\u3002",
     resumeHandle: "\u67e5\u770b\u7b80\u5386",
+  },
+  gallery: {
+    title: "AIGC Gallery",
   },
   notFound: {
     title: "404",

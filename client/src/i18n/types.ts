@@ -11,6 +11,7 @@ export interface Translations {
     comingSoon: string;
     copyright: string;
     digitalTwin: string;
+    gallery: string;
   };
   hero: {
     tagline: string;
@@ -48,6 +49,9 @@ export interface Translations {
     sendingButton: string;
     successToast: string;
     resumeHandle: string;
+  };
+  gallery: {
+    title: string;
   };
   notFound: {
     title: string;

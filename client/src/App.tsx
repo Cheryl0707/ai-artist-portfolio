@@ -10,6 +10,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
 import Work from "./pages/Work";
 
@@ -20,6 +21,7 @@ function Router() {
         <Route path={"/"} component={Home} />
         <Route path={"/work"} component={Work} />
         <Route path={"/about"} component={About} />
+        <Route path={"/gallery"} component={Gallery} />
         <Route path={"/contact"} component={Contact} />
         <Route path={"/digital-twin"} component={DigitalTwin} />
         <Route path={"/projects/:slug"} component={ProjectDetail} />

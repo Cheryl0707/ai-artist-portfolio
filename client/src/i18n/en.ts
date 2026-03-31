@@ -9,6 +9,7 @@ export const en: Translations = {
     comingSoon: "Coming soon",
     copyright: "\u00A9 2025 Cheryl Liu",
     digitalTwin: "Digital Twin",
+    gallery: "AIGC Gallery",
   },
   hero: {
     tagline: "Cheryl Liu creates at the",
@@ -50,6 +51,9 @@ export const en: Translations = {
     sendingButton: "Sending...",
     successToast: "Message sent! I'll respond within 48 hours.",
     resumeHandle: "View my resume",
+  },
+  gallery: {
+    title: "AIGC Gallery",
   },
   notFound: {
     title: "404",

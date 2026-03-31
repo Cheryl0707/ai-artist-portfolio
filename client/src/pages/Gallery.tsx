@@ -104,10 +104,7 @@ function MarqueeRow({
   return (
     <div
       className="group relative overflow-hidden"
-      style={{
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent, black 2%, black 98%, transparent)",
-      }}
+      style={{}}
     >
       <div
         className="flex gap-4 w-max group-hover:[animation-play-state:paused]"

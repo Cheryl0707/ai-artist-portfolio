@@ -14,7 +14,7 @@ export const en: Translations = {
   hero: {
     tagline: "Cheryl Liu creates at the",
     tagline2: "intersection of AI and production.",
-    subtitle: "Previously at NYU. Based in Brooklyn, NY.",
+    subtitle: "Graduated from NYU. Based in Brooklyn, NY.",
     viewAllWork: "View All Work →",
   },
   projectDetail: {

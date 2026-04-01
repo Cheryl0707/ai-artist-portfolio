@@ -13,8 +13,8 @@ const tools = [
 export default function AboutSection() {
   const { t } = useLanguage();
   return (
-    <section id="about" className="py-32" style={{ background: "#F8F8F7", borderTop: "1px solid #E5E5E4" }}>
-      <div className="container">
+    <section id="about" className="pb-32 px-6" style={{ background: "#F8F8F7" }}>
+      <div>
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,6fr)] gap-8 items-start">
           {/* Avatar */}
           <motion.div

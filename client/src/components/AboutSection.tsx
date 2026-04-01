@@ -15,7 +15,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-32" style={{ background: "#F8F8F7", borderTop: "1px solid #E5E5E4" }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)] gap-16 items-start">
           {/* Avatar */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -77,14 +77,14 @@ export default function AboutSection() {
                 </p>
                 <div className="space-y-5">
                   <div>
-                    <p className="text-xs" style={{ color: "#999999" }}>2024 – 2025</p>
                     <a href="https://www.nyu.edu/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>New York University (NYU)</a>
                     <p className="text-sm" style={{ color: "#000000" }}>MPS, Virtual Production</p>
+                    <p className="text-xs" style={{ color: "#999999" }}>2024 – 2025</p>
                   </div>
                   <div>
-                    <p className="text-xs" style={{ color: "#999999" }}>2020 – 2023</p>
                     <a href="https://www.sfu.ca/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>Simon Fraser University (SFU)</a>
                     <p className="text-sm" style={{ color: "#000000" }}>BA, Interactive Art and Technology</p>
+                    <p className="text-xs" style={{ color: "#999999" }}>2020 – 2023</p>
                   </div>
                 </div>
               </div>

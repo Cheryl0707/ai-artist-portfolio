@@ -43,7 +43,7 @@ export default function AboutSection() {
               {t.about.sectionLabel}
             </p>
 
-            <div className="space-y-6 mb-10 text-lg leading-relaxed" style={{ color: "#666666" }}>
+            <div className="space-y-4 mb-10 text-sm leading-relaxed" style={{ color: "#666666" }}>
               {t.about.bio.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}

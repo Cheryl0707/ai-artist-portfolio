@@ -15,7 +15,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-32" style={{ background: "#F8F8F7", borderTop: "1px solid #E5E5E4" }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)] gap-16 items-start">
           {/* Avatar */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -23,7 +23,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-square overflow-hidden w-3/4">
               <img
                 src={AVATAR}
                 alt="Nova"
@@ -57,12 +57,12 @@ export default function AboutSection() {
               <div className="space-y-5">
                 <div>
                   <p className="text-sm font-semibold" style={{ color: "#000000" }}>Creative Technologist & AI Researcher</p>
-                  <a href="https://the-garage.tv/" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>The Garage</a>
+                  <a href="https://the-garage.tv/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>The Garage</a>
                   <p className="text-xs" style={{ color: "#999999" }}>Brooklyn, NY</p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold" style={{ color: "#000000" }}>Digital Content Creator</p>
-                  <a href="https://www.bgmdancestudio.com/" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>BGM Dance Studio</a>
+                  <a href="https://www.bgmdancestudio.com/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>BGM Dance Studio</a>
                   <p className="text-xs" style={{ color: "#999999" }}>Richmond, BC, Canada</p>
                 </div>
               </div>
@@ -76,12 +76,12 @@ export default function AboutSection() {
               <div className="space-y-5">
                 <div>
                   <p className="text-xs" style={{ color: "#999999" }}>2024 – 2025</p>
-                  <a href="https://www.nyu.edu/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>New York University (NYU)</a>
+                  <a href="https://www.nyu.edu/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>New York University (NYU)</a>
                   <p className="text-sm" style={{ color: "#000000" }}>MPS, Virtual Production</p>
                 </div>
                 <div>
                   <p className="text-xs" style={{ color: "#999999" }}>2020 – 2023</p>
-                  <a href="https://www.sfu.ca/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>Simon Fraser University (SFU)</a>
+                  <a href="https://www.sfu.ca/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:text-[#2672E4] transition-colors" style={{ color: "#000000" }}>Simon Fraser University (SFU)</a>
                   <p className="text-sm" style={{ color: "#000000" }}>BA, Interactive Art and Technology</p>
                 </div>
               </div>

@@ -49,6 +49,44 @@ export default function AboutSection() {
               ))}
             </div>
 
+            {/* Experience */}
+            <div className="mb-10">
+              <p className="text-sm font-medium tracking-wide mb-6" style={{ color: "#2672E4" }}>
+                EXPERIENCE
+              </p>
+              <div className="space-y-5">
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>Creative Technologist & AI Researcher</p>
+                  <p className="text-sm" style={{ color: "#000000" }}>The Garage</p>
+                  <p className="text-xs" style={{ color: "#999999" }}>Brooklyn, NY</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>Digital Content Creator</p>
+                  <p className="text-sm" style={{ color: "#000000" }}>BGM Dance Studio</p>
+                  <p className="text-xs" style={{ color: "#999999" }}>Richmond, BC, Canada</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div className="mb-10">
+              <p className="text-sm font-medium tracking-wide mb-6" style={{ color: "#2672E4" }}>
+                EDUCATION
+              </p>
+              <div className="space-y-5">
+                <div>
+                  <p className="text-xs" style={{ color: "#999999" }}>2024 – 2025</p>
+                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>New York University (NYU)</p>
+                  <p className="text-sm" style={{ color: "#000000" }}>MPS, Virtual Production</p>
+                </div>
+                <div>
+                  <p className="text-xs" style={{ color: "#999999" }}>2020 – 2023</p>
+                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>Simon Fraser University (SFU)</p>
+                  <p className="text-sm" style={{ color: "#000000" }}>BA, Interactive Art and Technology</p>
+                </div>
+              </div>
+            </div>
+
             {/* Tools */}
             <div>
               <p className="text-sm font-medium tracking-wide mb-4" style={{ color: "#2672E4" }}>

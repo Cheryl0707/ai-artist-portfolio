@@ -39,10 +39,6 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <p className="text-sm font-medium tracking-wide mb-8" style={{ color: "#2672E4" }}>
-              {t.about.sectionLabel}
-            </p>
-
             <div className="space-y-4 mb-10 text-sm leading-relaxed" style={{ color: "#666666" }}>
               {t.about.bio.map((para, i) => (
                 <p key={i}>{para}</p>

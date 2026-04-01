@@ -15,7 +15,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-32" style={{ background: "#F8F8F7", borderTop: "1px solid #E5E5E4" }}>
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,6fr)] gap-8 items-start">
           {/* Avatar */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -23,7 +23,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="aspect-square overflow-hidden w-3/4">
+            <div className="aspect-square overflow-hidden">
               <img
                 src={AVATAR}
                 alt="Nova"

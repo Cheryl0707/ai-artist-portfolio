@@ -54,7 +54,6 @@ export default function MobileSidebar() {
               <MobileLink href="/about" label={t.nav.about} currentPath={location} onNavigate={close} />
               <MobileLink href="/digital-twin" label={t.nav.digitalTwin} currentPath={location} onNavigate={close} />
               <MobileLink href="/work" label="Projects" currentPath={location} onNavigate={close} />
-              <MobileLink href="/gallery" label={t.nav.gallery} currentPath={location} onNavigate={close} />
               <a
                 href="https://drive.google.com/file/d/1WN7YtcqRA96YgYF6yXwSSd8eGnN203UE/view?usp=sharing"
                 target="_blank"

@@ -26,7 +26,6 @@ export default function Sidebar() {
         <SidebarLink href="/about" label={t.nav.about} currentPath={location} />
         <SidebarLink href="/digital-twin" label={t.nav.digitalTwin} currentPath={location} />
         <SidebarLink href="/work" label="Projects" currentPath={location} />
-        <SidebarLink href="/gallery" label={t.nav.gallery} currentPath={location} />
         <a
           href="https://drive.google.com/file/d/1WN7YtcqRA96YgYF6yXwSSd8eGnN203UE/view?usp=sharing"
           target="_blank"

@@ -57,12 +57,12 @@ export default function AboutSection() {
               <div className="space-y-5">
                 <div>
                   <p className="text-sm font-semibold" style={{ color: "#000000" }}>Creative Technologist & AI Researcher</p>
-                  <p className="text-sm" style={{ color: "#000000" }}>The Garage</p>
+                  <a href="https://the-garage.tv/" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>The Garage</a>
                   <p className="text-xs" style={{ color: "#999999" }}>Brooklyn, NY</p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold" style={{ color: "#000000" }}>Digital Content Creator</p>
-                  <p className="text-sm" style={{ color: "#000000" }}>BGM Dance Studio</p>
+                  <a href="https://www.bgmdancestudio.com/" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>BGM Dance Studio</a>
                   <p className="text-xs" style={{ color: "#999999" }}>Richmond, BC, Canada</p>
                 </div>
               </div>
@@ -76,12 +76,12 @@ export default function AboutSection() {
               <div className="space-y-5">
                 <div>
                   <p className="text-xs" style={{ color: "#999999" }}>2024 – 2025</p>
-                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>New York University (NYU)</p>
+                  <a href="https://www.nyu.edu/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>New York University (NYU)</a>
                   <p className="text-sm" style={{ color: "#000000" }}>MPS, Virtual Production</p>
                 </div>
                 <div>
                   <p className="text-xs" style={{ color: "#999999" }}>2020 – 2023</p>
-                  <p className="text-sm font-semibold" style={{ color: "#000000" }}>Simon Fraser University (SFU)</p>
+                  <a href="https://www.sfu.ca/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold hover:opacity-70 transition-opacity" style={{ color: "#000000" }}>Simon Fraser University (SFU)</a>
                   <p className="text-sm" style={{ color: "#000000" }}>BA, Interactive Art and Technology</p>
                 </div>
               </div>

@@ -2,12 +2,40 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { getProjectBySlug } from "@/data/projects";
 import { useLanguage, useBiText } from "@/contexts/LanguageContext";
 import type { BiText } from "@/i18n/types";
 import PdfViewer from "@/components/PdfViewer";
+
+/** YouTube view count badge */
+function YouTubeViewCount({ videoId }: { videoId: string }) {
+  const [views, setViews] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch(`https://returnyoutubedislikeapi.com/votes?videoId=${videoId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.viewCount) setViews(data.viewCount);
+      })
+      .catch(() => {});
+  }, [videoId]);
+
+  if (views === null) return null;
+
+  return (
+    <div className="flex items-center gap-2 mt-3">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      <p className="text-sm font-medium" style={{ color: "#999999" }}>
+        {views.toLocaleString()} views
+      </p>
+    </div>
+  );
+}
 
 /** Per-project process sections for rich detail pages */
 interface Section {
@@ -18,7 +46,7 @@ interface Section {
   rowCaption?: BiText;
   rowLabel?: string;
   videos?: string[];
-  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text" | "marquee";
+  layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text" | "marquee" | "problem-statement" | "two-col-cards";
   youtube?: string;
   pdf?: string;
   extraRows?: { label: string; items: { type: "image" | "video"; src: string; caption?: (string | BiText) }[] }[];
@@ -264,10 +292,39 @@ const projectSections: Record<string, Section[]> = {
       youtube: "Ak4VzX5NHKY",
     },
     {
+      label: { en: "Problem Statement", zh: "问题陈述" },
+      description: {
+        en: `At The Garage, we specialize in capturing the tasty moment — dramatic camera movements and high-speed shots that reveal dripping sauces and crispy textures. But in the world of commercials, things move fast. The traditional client-facing pre-vis workflow took at least three days to render a 15-second video with food animation, camera animation, matched lighting and framing.
+
+That's not efficient enough for visual communication at commercial speed. To make sure we capture exactly the footage the client wants and execute the creative director's vision, we had to find a way to accelerate this process.`,
+        zh: `在 The Garage，我们专注于捕捉美味瞬间——戏剧性的镜头运动和高速摄影，展现酱汁滴落和酥脆质感。但在商业广告的世界里，一切都在快速推进。传统的面向客户的预演工作流需要至少三天才能渲染出一条 15 秒的视频，包含食品动画、镜头动画、匹配的灯光和构图。
+
+这对于商业节奏下的视觉沟通来说效率远远不够。为了确保我们精准捕捉客户想要的画面、执行创意总监的想法，我们必须找到加速这一流程的方法。`,
+      },
+      images: [],
+      layout: "problem-statement",
+    },
+    {
+      label: { en: "Action", zh: "行动" },
+      description: {
+        en: "Generate 3D assets from a refined product image — on a white background usually yields the best results. The refined image is fed into a ComfyUI workflow to produce usable 3D assets rapidly, replacing the traditional modeling pipeline.\n\nConnect Flair Motion Control in Unreal Engine and record camera movements. These recorded paths are reusable across different objects, lighting setups, and scenarios — eliminating redundant animation work per project.\n\nMotion Control (Flair) Operator: Dan Gottesman",
+        zh: "从精修的产品图生成 3D 资产——白色背景通常能产出最佳效果。精修图像输入 ComfyUI 工作流，快速生成可用的 3D 资产，取代传统建模流程。\n\n在 Unreal Engine 中连接 Flair 运动控制并录制镜头运动。录制的路径可在不同物体、灯光设置和场景间复用——消除每个项目中重复的动画工作。\n\nMotion Control (Flair) Operator: Dan Gottesman",
+      },
+      images: [
+        "/images/projects/panera/prepare-3d-assets.JPG",
+        "/images/projects/panera/connect-flair-moco-animate.JPG",
+      ],
+      captions: [
+        { en: "AI 3D Asset Generation", zh: "AI 3D 资产生成" },
+        { en: "Flair Motion Control + Unreal Engine", zh: "Flair 运动控制 + Unreal Engine" },
+      ],
+      layout: "two-col-cards",
+    },
+    {
       label: { en: "Pre-vis vs. Final", zh: "预演 vs. 最终成片" },
       description: {
-        en: "Side-by-side comparison of my Unreal Engine pre-visualization and the final commercial footage.",
-        zh: "我的 Unreal Engine 预演与最终广告成片的并排对比。",
+        en: "The pre-visualization gave clients a clear preview of camera angles, timing, and product presentation before committing to production — described as a major differentiator in the pitch process.",
+        zh: "预演在正式投入制作前为客户提供了镜头角度、节奏和产品呈现的清晰预览——被客户描述为提案过程中的核心差异化优势。",
       },
       images: [],
       videos: ["/images/projects/panera/previs.mp4", "/images/projects/panera/final.mp4"],
@@ -275,33 +332,21 @@ const projectSections: Record<string, Section[]> = {
       layout: "side-by-side",
     },
     {
-      label: { en: "Other Camera Movements", zh: "其他运镜" },
-      description: { en: "", zh: "" },
+      label: { en: "Reusable Camera Movement Library", zh: "可复用镜头运动库" },
+      description: {
+        en: "Once a camera path is recorded, it can be applied to any product with different lighting and styling — turning each shoot into a library of reusable assets rather than one-off work.",
+        zh: "镜头路径一旦录制完成，即可应用于任何产品的不同灯光和造型——将每次拍摄转化为可复用的资产库，而非一次性工作。",
+      },
       images: [],
       videos: ["/images/projects/panera/camera-10.mp4", "/images/projects/panera/camera-14.mp4"],
       layout: "side-by-side",
     },
     {
-      label: { en: "3D Assets Preparation", zh: "3D 素材准备" },
+      label: { en: "Full Visualization", zh: "完整视频呈现" },
       description: {
-        en: "Preparing and organizing 3D assets in Unreal Engine for the virtual production environment.",
-        zh: "在 Unreal Engine 中准备和组织用于虚拟制作环境的 3D 素材。",
+        en: "Complete pre-vis sequence delivered to client — camera animation, product staging, and lighting all rendered in Unreal Engine within the same day.",
+        zh: "交付给客户的完整预演序列——镜头动画、产品布景和灯光均在同一天内于 Unreal Engine 中渲染完成。",
       },
-      images: ["/images/projects/panera/prepare-3d-assets.JPG"],
-      layout: "image-text",
-    },
-    {
-      label: { en: "Flair Animation", zh: "Flair 动画" },
-      description: {
-        en: "Connecting Flair with MoCo for automated camera animation and motion control integration.",
-        zh: "将 Flair 与 MoCo 连接，实现自动化摄像机动画和运动控制集成。",
-      },
-      images: ["/images/projects/panera/connect-flair-moco-animate.JPG"],
-      layout: "image-text",
-    },
-    {
-      label: { en: "Visualization", zh: "视频呈现" },
-      description: { en: "", zh: "" },
       images: [],
       videos: ["/images/projects/panera/visualize.mp4"],
       layout: "full",
@@ -703,6 +748,27 @@ export default function ProjectDetail() {
                     ))}
                   </div>
                 </div>
+                {project.highlights && project.highlights.length > 0 && (
+                  <>
+                    <div style={{ borderTop: "1px solid #E5E5E4" }} className="pt-5">
+                      <p className="text-[11px] font-medium tracking-wide uppercase mb-3" style={{ color: "#999999" }}>
+                        Results
+                      </p>
+                      <div className="space-y-3">
+                        {project.highlights.map((h, i) => (
+                          <div key={i}>
+                            <p className="text-base font-bold" style={{ color: "#2672E4" }}>
+                              {bt(h.metric)}
+                            </p>
+                            <p className="text-[11px] font-medium tracking-wide uppercase" style={{ color: "#999999" }}>
+                              {bt(h.label)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
@@ -717,6 +783,41 @@ export default function ProjectDetail() {
                 {...fade}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
               >
+                {section.layout === "problem-statement" ? (
+                  (() => {
+                    const parts = bt(section.description).split("\n\n");
+                    const starLabels = ["Scenario", "Task"];
+                    return (
+                      <div>
+                        <p
+                          className="text-[11px] font-medium tracking-widest uppercase mb-2"
+                          style={{ color: "#999999" }}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </p>
+                        <h2 className="text-2xl font-bold mb-6" style={{ color: "#000000" }}>
+                          {bt(section.label)}
+                        </h2>
+                        <div className="flex flex-col gap-6">
+                          {starLabels.map((label, si) => (
+                            <div
+                              key={label}
+                              className="grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-6"
+                            >
+                              <p className="text-[11px] font-bold tracking-widest uppercase pt-1" style={{ color: "#2672E4" }}>
+                                {label}
+                              </p>
+                              <p className="text-sm lg:text-base leading-relaxed" style={{ color: "#444444" }}>
+                                {parts[si] || ""}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()
+                ) : (
+                <>
                 <p
                   className="text-[11px] font-medium tracking-widest uppercase mb-2"
                   style={{ color: "#999999" }}
@@ -726,7 +827,7 @@ export default function ProjectDetail() {
                 <h2 className="text-2xl font-bold mb-3" style={{ color: "#000000" }}>
                   {bt(section.label)}
                 </h2>
-                {section.layout !== "image-text" && (
+                {section.layout !== "image-text" && section.layout !== "two-col-cards" && (
                   <p className="text-base leading-relaxed mb-6 max-w-3xl" style={{ color: "#666666" }}>
                     {bt(section.description)}
                   </p>
@@ -746,6 +847,31 @@ export default function ProjectDetail() {
                         {bt(section.description)}
                       </p>
                     </div>
+                  </div>
+                ) : section.layout === "two-col-cards" ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {section.images.map((img, j) => {
+                      const descParts = bt(section.description).split("\n\n");
+                      return (
+                        <div key={j}>
+                          <div className="overflow-hidden rounded-lg mb-4">
+                            <img
+                              src={img}
+                              alt={section.captions?.[j] ? (typeof section.captions[j] === "string" ? section.captions[j] as string : bt(section.captions[j] as BiText)) : `${bt(section.label)} ${j + 1}`}
+                              className="w-full h-auto object-cover"
+                            />
+                          </div>
+                          {section.captions?.[j] && (
+                            <p className="text-sm font-bold mb-2" style={{ color: "#000000" }}>
+                              {typeof section.captions[j] === "string" ? section.captions[j] : bt(section.captions[j] as BiText)}
+                            </p>
+                          )}
+                          <p className="text-sm leading-relaxed" style={{ color: "#666666" }}>
+                            {descParts[j] || ""}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : section.layout === "marquee" ? (
                   <div className="overflow-hidden rounded-lg py-4" style={{ background: "#F8F8F7" }}>
@@ -860,15 +986,18 @@ export default function ProjectDetail() {
                     ))}
                   </div>
                 ) : section.youtube ? (
-                  <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16 / 9" }}>
-                    <iframe
-                      src={`https://www.youtube.com/embed/${section.youtube}`}
-                      title={bt(section.label)}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                      style={{ border: "none" }}
-                    />
+                  <div>
+                    <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16 / 9" }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${section.youtube}`}
+                        title={bt(section.label)}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                        style={{ border: "none" }}
+                      />
+                    </div>
+                    <YouTubeViewCount videoId={section.youtube} />
                   </div>
                 ) : section.pdf ? (
                   <PdfViewer file={section.pdf} />
@@ -964,6 +1093,8 @@ export default function ProjectDetail() {
                     </div>
                   </div>
                 ))}
+                </>
+                )}
               </motion.div>
             ))}
           </div>

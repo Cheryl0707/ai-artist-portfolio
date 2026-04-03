@@ -22,6 +22,7 @@ export interface Project {
   noDetail?: boolean;
   coverVideoAutoplay?: string;
   roles?: BiText[];
+  highlights?: { metric: BiText; label: BiText }[];
 }
 
 export interface Category {
@@ -134,27 +135,50 @@ Created with Xinyu (Cindy) Li using Runway's AI tools. We used Runway Frames to 
       zh: "Panera Mix & Match",
     },
     description: {
-      en: "Pre-visualization artist for Panera's Mix & Match commercial — building Unreal Engine environments for virtual production.",
-      zh: "担任 Panera Mix & Match 广告的预演美术师——为虚拟制作构建 Unreal Engine 环境。",
+      en: "Compressed pre-vis from 3+ days to half a day — building an AI-integrated pipeline with 3D asset generation and reusable motion control for food & beverage commercials.",
+      zh: "将预演周期从 3 天以上压缩至半天——构建集 AI 3D 资产生成与可复用运动控制于一体的流程，服务于食品饮料广告。",
     },
     fullDescription: {
-      en: `Worked as pre-visualization artist on the Panera Mix & Match commercial. Responsible for building and iterating on Unreal Engine environments that translated the creative direction into production-ready virtual sets for the LED volume shoot.`,
-      zh: `在 Panera Mix & Match 广告项目中担任预演美术师。负责在 Unreal Engine 中搭建并迭代虚拟环境，将创意方向转化为可用于 LED 虚拟棚拍摄的制作级虚拟场景。`,
+      en: `The Garage specializes in high-impact food and beverage content — dramatic camera moves, high-speed shots catching dripping sauces and crispy textures. But traditional pre-visualization for a 15-second spot (food animation + camera animation + matched lighting) took 3+ days to render — too slow for commercial timelines.
+
+The goal: speed up the client-facing pre-vis workflow without sacrificing the visual fidelity needed to align creative directors and clients before a shoot.
+
+I built a two-part AI-integrated pipeline — AI-driven 3D asset generation from product photography, paired with Flair Motion Control and Unreal Engine for reusable camera movements across different objects, lighting setups, and scenarios. This eliminated redundant animation work per project and compressed the pre-vis timeline from 3+ days to half a day.`,
+      zh: `The Garage 专注于高冲击力的食品饮料内容——戏剧性的镜头运动、高速摄影捕捉酱汁滴落和酥脆质感。但传统的 15 秒广告预演（食品动画 + 镜头动画 + 匹配灯光）需要 3 天以上的渲染时间——对于商业项目时间线来说太慢了。
+
+目标：在不牺牲视觉保真度的前提下加速面向客户的预演工作流——确保创意总监和客户在拍摄前能够充分对齐。
+
+我构建了一套两部分的 AI 集成流程——从产品摄影出发的 AI 驱动 3D 资产生成，配合 Flair 运动控制与 Unreal Engine 实现跨不同物体、灯光设置和场景的可复用镜头运动。这消除了每个项目中重复的动画工作，将预演周期从 3 天以上压缩至半天。`,
     },
     coverImage: "/images/projects/panera/panera.png",
     processImages: [],
     tags: [
+      { en: "AI Pre-vis", zh: "AI 预演" },
       { en: "Virtual Production", zh: "虚拟制作" },
       { en: "Unreal Engine", zh: "Unreal Engine" },
-      { en: "Pre-vis", zh: "预演" },
+      { en: "Motion Control", zh: "运动控制" },
       { en: "Commercial", zh: "商业广告" },
     ],
-    tools: ["Unreal Engine", "nDisplay", "LED Volume"],
+    tools: ["Unreal Engine", "ComfyUI", "Flair Motion Control", "nDisplay", "LED Volume"],
     year: "2026",
     slug: "panera-mix-and-match",
     category: "gen-production",
     roles: [
-      { en: "Pre-vis Artist", zh: "预演美术师" },
+      { en: "Pre-visualization Artist", zh: "预演美术师" },
+    ],
+    highlights: [
+      {
+        metric: { en: "3+ days → ½ day", zh: "3+ 天 → 半天" },
+        label: { en: "Pre-vis Timeline", zh: "预演周期" },
+      },
+      {
+        metric: { en: "Major differentiator", zh: "核心差异化优势" },
+        label: { en: "Client Feedback", zh: "客户反馈" },
+      },
+      {
+        metric: { en: "Repeat business", zh: "持续合作" },
+        label: { en: "Business Impact", zh: "商业影响" },
+      },
     ],
   },
   {

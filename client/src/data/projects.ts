@@ -381,6 +381,16 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
     year: "2025",
     slug: "email-agent",
     category: "automation",
+    highlights: [
+      {
+        metric: { en: "1 hour → 5 min", zh: "1 小时 → 5 分钟" },
+        label: { en: "Client Research Time", zh: "客户调研时间" },
+      },
+      {
+        metric: { en: "Improved team efficiency", zh: "提升团队效率" },
+        label: { en: "Impact", zh: "影响" },
+      },
+    ],
   },
 
   // ── Google AI Studio ─────────────────────────────────────

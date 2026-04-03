@@ -127,6 +127,12 @@ Created with Xinyu (Cindy) Li using Runway's AI tools. We used Runway Frames to 
       { en: "Image to Video Prompt Engineer", zh: "图生视频提示词工程师" },
       { en: "Sound Designer", zh: "音效设计师" },
     ],
+    highlights: [
+      {
+        metric: { en: "Runway Gen:48 Finalist", zh: "Runway Gen:48 入围" },
+        label: { en: "Result", zh: "成果" },
+      },
+    ],
   },
   {
     id: "panera",

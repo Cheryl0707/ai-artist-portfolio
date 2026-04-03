@@ -543,6 +543,15 @@ That's not efficient enough for visual communication at commercial speed. To mak
       images: ["/images/projects/emailagent/largeThread.png"],
       layout: "full",
     },
+    {
+      label: { en: "Relationship Report", zh: "关系报告" },
+      description: {
+        en: "Tailored to The Garage CRM purposes — the agent generates structured relationship reports from email history, capturing background info, collaboration history, last contact details, and studio visit evidence. Each report is stored as a dedicated sheet in the Garage Relationship database.",
+        zh: "专为 The Garage CRM 需求定制——代理从邮件历史中生成结构化的关系报告，涵盖背景信息、合作历史、最近联系详情和工作室拜访记录。每份报告作为独立的工作表存储在 Garage Relationship 数据库中。",
+      },
+      images: ["/images/projects/emailagent/page-09.png"],
+      layout: "image-text",
+    },
   ],
   "parallax-ai": [
     {

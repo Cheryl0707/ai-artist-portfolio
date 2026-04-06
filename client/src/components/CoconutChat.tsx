@@ -42,7 +42,7 @@ export default function CoconutChat() {
 
             {/* Iframe */}
             <iframe
-              src="https://cheryl-digital-twin.vercel.app?widget=true"
+              src="/twin/index.html?widget=true"
               allow="microphone"
               className="flex-1 w-full border-0"
               title="Chat with Cheryl's digital twin"

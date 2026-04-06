@@ -1,6 +1,11 @@
 {
   "buildCommand": "pnpm run build:client",
   "outputDirectory": "dist/public",
+  "functions": {
+    "api/chat.js": {
+      "includeFiles": "knowledge/**"
+    }
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

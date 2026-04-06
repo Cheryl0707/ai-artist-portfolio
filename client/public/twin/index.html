@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheryl Liu — Digital Twin</title>
+  <link rel="icon" href="/twin/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #faf8f4;
+      --accent: #4a9e5c;
+      --accent2: #d4748a;
+      --text: #2c2a26;
+      --muted: #9e9a90;
+      --bubble-user: rgba(74, 158, 92, 0.08);
+      --bubble-ai: rgba(212, 116, 138, 0.08);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Soft grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Soft radial glows — spring warmth */
+    .glow-green {
+      position: fixed;
+      top: 20%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(74, 158, 92, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-pink {
+      position: fixed;
+      bottom: 10%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 116, 138, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+      padding: 40px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 48px;
+    }
+    .header-name {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 28px;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .header-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* (Orb replaced by avatar — see .avatar-main styles below) */
+
+    /* Transcript */
+    .transcript {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+      max-height: 240px;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .transcript::-webkit-scrollbar { display: none; }
+
+    .bubble {
+      max-width: 85%;
+      padding: 10px 16px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      animation: fade-in 0.3s ease;
+    }
+    .bubble.user {
+      align-self: flex-end;
+      background: var(--bubble-user);
+      border: 1px solid rgba(74, 158, 92, 0.15);
+      color: var(--accent);
+      border-bottom-right-radius: 4px;
+    }
+    .bubble.ai {
+      align-self: flex-start;
+      background: var(--bubble-ai);
+      border: 1px solid rgba(212, 116, 138, 0.15);
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Status */
+    .status {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      min-height: 16px;
+      transition: color 0.3s;
+    }
+    .status.active { color: var(--accent); }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 42, 38, 0.15);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover:not(:disabled) {
+      background: rgba(44, 42, 38, 0.04);
+      border-color: rgba(44, 42, 38, 0.3);
+    }
+    .btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .btn.recording {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(74, 158, 92, 0.06);
+    }
+    .btn-stop {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+    .btn-stop:hover:not(:disabled) {
+      background: rgba(212, 116, 138, 0.06);
+    }
+
+    /* Text input */
+    .text-input-row {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .text-input {
+      flex: 1;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 42, 38, 0.15);
+      background: transparent;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .text-input::placeholder { color: var(--muted); }
+    .text-input:focus { border-color: rgba(44, 42, 38, 0.4); }
+    .text-input:disabled { opacity: 0.3; }
+    .btn-send {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 42, 38, 0.15);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .btn-send:hover:not(:disabled) {
+      background: rgba(44, 42, 38, 0.04);
+      border-color: rgba(44, 42, 38, 0.3);
+    }
+    .btn-send:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* Chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 48px;
+      width: 100%;
+    }
+    .chip {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 42, 38, 0.1);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover:not(:disabled) {
+      color: var(--text);
+      border-color: rgba(44, 42, 38, 0.25);
+      background: rgba(44, 42, 38, 0.04);
+    }
+    .chip:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-align: center;
+      padding-bottom: 24px;
+      opacity: 0.5;
+    }
+
+    /* === Crowd Scene Overlay === */
+    #crowd-overlay {
+      position: fixed;
+      inset: 0;
+      background: #f0ede6;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.6s ease;
+    }
+    #crowd-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #crowd-overlay.hidden { display: none; }
+
+    .crowd-avatars {
+      position: absolute;
+      inset: 0;
+    }
+
+    .avatar-char {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      will-change: transform, opacity;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
+    .avatar-char.visible { opacity: 1; }
+    @media (min-width: 640px) { .avatar-char { width: 100px; height: 100px; } }
+    @media (min-width: 1024px) { .avatar-char { width: 120px; height: 120px; } }
+
+    .avatar-char img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+      transition: transform 0.3s ease;
+    }
+
+    /* Walking bob */
+    .avatar-char.walking img {
+      animation: avatar-walk 0.4s ease-in-out infinite;
+    }
+
+    @keyframes avatar-walk {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Stopped — facing forward, slight scale-up */
+    .avatar-char.stopped img {
+      animation: none;
+      transform: scale(1.05);
+    }
+
+    /* Cheryl glow when she's the last one */
+    .avatar-char.cheryl-highlight img {
+      filter: drop-shadow(0 0 18px rgba(74, 158, 92, 0.5)) drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+      animation: cheryl-glow 2s ease-in-out infinite;
+    }
+    @keyframes cheryl-glow {
+      0%, 100% { filter: drop-shadow(0 0 12px rgba(74, 158, 92, 0.4)) drop-shadow(0 2px 6px rgba(0,0,0,0.15)); }
+      50% { filter: drop-shadow(0 0 24px rgba(74, 158, 92, 0.7)) drop-shadow(0 2px 6px rgba(0,0,0,0.15)); }
+    }
+
+    /* Prompt text */
+    .crowd-prompt {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: 80px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .crowd-prompt.visible { opacity: 1; }
+
+    .crowd-prompt h2 {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 32px;
+      font-weight: 400;
+      color: #2c2a26;
+      margin-bottom: 12px;
+    }
+    .crowd-prompt .subtitle {
+      font-size: 12px;
+      color: #9e9a90;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* Mic indicator */
+    .mic-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .mic-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: mic-pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes mic-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+
+    /* Fallback button */
+    .crowd-fallback-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 42, 38, 0.15);
+      background: transparent;
+      color: #9e9a90;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .crowd-fallback-btn:hover {
+      color: #2c2a26;
+      border-color: rgba(44, 42, 38, 0.3);
+      background: rgba(44, 42, 38, 0.04);
+    }
+
+    /* Call progress dots */
+    .call-progress {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .call-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1.5px solid #c0bbb2;
+      background: transparent;
+      transition: all 0.4s ease;
+    }
+    .call-dot.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(74, 158, 92, 0.3);
+      animation: dot-pop 0.4s ease;
+    }
+    @keyframes dot-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.6); }
+      100% { transform: scale(1); }
+    }
+
+
+    /* Subtitle flash on callout */
+    .crowd-prompt .subtitle.flash {
+      color: #d4748a;
+      transition: color 0.2s;
+    }
+
+    /* Spring emoji particles — ambient in main UI */
+    .spring-emoji {
+      position: fixed;
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 0;
+      animation: emoji-fall linear forwards;
+      will-change: transform, opacity;
+      opacity: 0.6;
+    }
+    @keyframes emoji-fall {
+      0% { opacity: 0.6; transform: translateY(-20px) rotate(0deg) translateX(0); }
+      50% { opacity: 0.5; transform: translateY(50vh) rotate(180deg) translateX(30px); }
+      100% { opacity: 0; transform: translateY(105vh) rotate(360deg) translateX(-20px); }
+    }
+
+    /* Cheryl avatar (replaces orb) */
+    .avatar-wrapper {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar-main {
+      width: 120px;
+      height: 140px;
+      transition: transform 0.4s, filter 0.4s;
+      position: relative;
+    }
+    .avatar-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .avatar-main.listening {
+      animation: avatar-pulse-green 1.2s ease-in-out infinite;
+    }
+    .avatar-main.speaking {
+      animation: avatar-pulse-pink 1.5s ease-in-out infinite;
+    }
+    .avatar-main.thinking {
+      animation: avatar-think 2s ease-in-out infinite;
+      opacity: 0.7;
+    }
+    @keyframes avatar-pulse-green {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(74, 158, 92, 0.3)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 18px rgba(74, 158, 92, 0.5)); }
+    }
+    @keyframes avatar-pulse-pink {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212, 116, 138, 0.3)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 18px rgba(212, 116, 138, 0.5)); }
+    }
+    @keyframes avatar-think {
+      0%, 100% { transform: scale(0.96); opacity: 0.6; }
+      50% { transform: scale(1.01); opacity: 0.85; }
+    }
+
+    /* Hide main content initially */
+    .main-content.hidden-behind {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .main-content {
+      transition: opacity 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Crowd Scene Overlay -->
+  <div id="crowd-overlay">
+    <div class="crowd-avatars" id="crowd-avatars"></div>
+    <div class="crowd-prompt" id="crowd-prompt">
+      <h2 id="crowd-title">Call out "Cheryl!"</h2>
+      <div class="subtitle" id="crowd-subtitle">who's Cheryl? everyone's looking...</div>
+      <div class="call-progress" id="call-progress">
+        <span class="call-dot" id="dot-1"></span>
+        <span class="call-dot" id="dot-2"></span>
+        <span class="call-dot" id="dot-3"></span>
+      </div>
+      <div class="mic-indicator" id="mic-indicator" style="display:none;">
+        <span class="mic-dot"></span> listening
+      </div>
+      <button class="crowd-fallback-btn" id="crowd-skip-btn" onclick="handleCallout()">tap to call "Cheryl!"</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="glow-green"></div>
+  <div class="glow-pink"></div>
+
+  <div class="container main-content hidden-behind" id="main-content">
+    <div class="header">
+      <div class="header-name">Cheryl Liu</div>
+      <div class="header-label">Digital Twin &mdash; Ask Me Anything</div>
+    </div>
+
+    <div class="avatar-wrapper">
+      <div class="avatar-main" id="orb">
+        <img src="/avatars/cheryl.png" alt="Cheryl">
+      </div>
+    </div>
+
+    <div class="transcript" id="transcript"></div>
+
+    <div class="status" id="status">ready</div>
+
+    <div class="controls">
+      <button class="btn" id="btn-mic" onclick="toggleMic()">&#x2299; TAP TO SPEAK</button>
+      <button class="btn btn-stop" id="btn-stop" onclick="stopAll()" disabled>&#x25FB; STOP</button>
+    </div>
+
+    <div class="text-input-row">
+      <input type="text" class="text-input" id="text-input" placeholder="or type here..." autocomplete="off">
+      <button class="btn-send" id="btn-send" onclick="sendText()">SEND</button>
+    </div>
+
+    <div class="chips" id="chips">
+      <button class="chip" onclick="sendChip(this)">Tell me about yourself</button>
+      <button class="chip" onclick="sendChip(this)">What makes you different?</button>
+      <button class="chip" onclick="sendChip(this)">Tell me about your featured project</button>
+      <button class="chip" onclick="sendChip(this)">Why this avatar as your icon?</button>
+      <button class="chip" onclick="sendChip(this)">Walk me through your work experience</button>
+      <button class="chip" onclick="sendChip(this)">Life outside work?</button>
+    </div>
+
+    <div class="footer">voice powered by elevenlabs &middot; ai by gemini &middot; built by cheryl</div>
+  </div>
+
+  <script>
+    // Widget mode — skip crowd scene entirely
+    const isWidget = new URLSearchParams(window.location.search).get('widget') === 'true';
+
+    // ========== CROWD SCENE ==========
+    const AVATAR_COUNT = 18;
+    const CHERYL_INDEX = 0; // Cheryl is always the first avatar
+    const CALLS_REQUIRED = 3;
+    let crowdPhase = 'idle'; // idle | reacting | scattering | done
+    let crowdRecognition = null;
+    let callCount = 0;
+    let lastCallTime = 0;
+    let avatars = []; // All avatar state objects
+    let animFrameId = null;
+
+    // Prompt messages for each stage
+    const CALL_HINTS = [
+      { title: 'Call out "Cheryl!"', subtitle: 'who\'s Cheryl? everyone\'s looking...' },
+      { title: 'Again! "Cheryl!"', subtitle: 'people are leaving... but someone stayed' },
+      { title: 'One more! "CHERYL!"', subtitle: 'found her.' },
+    ];
+
+    // Track avatar batches: 3 groups (Cheryl excluded from all batches)
+    let avatarBatches = [[], [], []];
+
+    function initCrowdScene() {
+      const container = document.getElementById('crowd-avatars');
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      for (let i = 0; i < AVATAR_COUNT; i++) {
+        const isCheryl = (i === CHERYL_INDEX);
+        const div = document.createElement('div');
+        div.className = 'avatar-char';
+
+        const img = document.createElement('img');
+        img.src = isCheryl ? '/avatars/cheryl.png' : `/avatars/avatar-${String(i + 1).padStart(2, '0')}.png`;
+        img.alt = '';
+        img.loading = 'eager';
+        div.appendChild(img);
+        container.appendChild(div);
+
+        // Walking bounds: upper content area (pink box zone)
+        const boundsLeft = 40;
+        const boundsRight = vw - 40;
+        const boundsTop = vw * 0.04;               // ~4% from top
+        const boundsBottom = vh * 0.72;             // ~72% height (above prompt)
+
+        // Random initial position within bounds
+        const x = boundsLeft + Math.random() * (boundsRight - boundsLeft);
+        const y = boundsTop + Math.random() * (boundsBottom - boundsTop);
+
+        // Mostly horizontal movement: strong vx, very slight vy
+        const dir = Math.random() > 0.5 ? 1 : -1;
+        const speed = 0.3 + Math.random() * 0.5;
+
+        const av = {
+          el: div,
+          x, y,
+          vx: dir * speed,
+          vy: (Math.random() - 0.5) * 0.08,  // very slight vertical drift
+          speed,
+          state: 'walking', // walking | stopped | leaving | gone
+          isCheryl,
+          scale: 0.75 + Math.random() * 0.5,
+        };
+
+        avatars.push(av);
+
+        // Stagger fade-in
+        setTimeout(() => {
+          div.classList.add('visible', 'walking');
+          applyPosition(av);
+        }, i * 80);
+
+        // Assign non-Cheryl avatars to batches
+        if (!isCheryl) {
+          avatarBatches[i % 3].push(av);
+        }
+      }
+
+      // Start the walking animation loop
+      animFrameId = requestAnimationFrame(walkLoop);
+
+      // Show prompt after avatars fade in
+      setTimeout(() => {
+        document.getElementById('crowd-prompt').classList.add('visible');
+        initCrowdSpeechRecognition();
+      }, AVATAR_COUNT * 80 + 400);
+
+      // Keyboard support
+      document.addEventListener('keydown', function crowdKeyHandler(e) {
+        if (crowdPhase === 'scattering' || crowdPhase === 'done') return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCallout();
+        }
+      });
+    }
+
+    function applyPosition(av) {
+      const facingLeft = av.vx < 0;
+      av.el.style.left = `${av.x}px`;
+      av.el.style.top = `${av.y}px`;
+      av.el.style.transform = `translate(-50%, -50%) scale(${av.scale})${facingLeft ? ' scaleX(-1)' : ''}`;
+    }
+
+    function walkLoop() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const bL = 40, bR = vw - 40;
+      const bT = vw * 0.04, bB = vh * 0.72;
+
+      for (const av of avatars) {
+        if (av.state === 'walking') {
+          av.x += av.vx;
+          av.y += av.vy;
+
+          // Bounce off horizontal edges (main walking direction)
+          if (av.x < bL || av.x > bR) {
+            av.vx *= -1;
+            av.x = Math.max(bL, Math.min(bR, av.x));
+          }
+          // Bounce off vertical bounds (keeps them in the pink zone)
+          if (av.y < bT || av.y > bB) {
+            av.vy *= -1;
+            av.y = Math.max(bT, Math.min(bB, av.y));
+          }
+
+          // Occasionally add a tiny vertical drift, keep horizontal dominant
+          if (Math.random() < 0.003) {
+            av.vy = (Math.random() - 0.5) * 0.1;
+          }
+
+          applyPosition(av);
+        } else if (av.state === 'leaving') {
+          av.x += av.vx;
+          av.y += av.vy;
+          av.el.style.left = `${av.x}px`;
+          av.el.style.top = `${av.y}px`;
+
+          // Check if off-screen
+          if (av.x < -100 || av.x > vw + 100 || av.y < -100 || av.y > vh + 100) {
+            av.state = 'gone';
+            av.el.style.opacity = '0';
+          }
+        }
+      }
+
+      animFrameId = requestAnimationFrame(walkLoop);
+    }
+
+    // Make a batch leave: walk toward nearest screen edge
+    function sendBatchLeaving(batch) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      batch.forEach(av => {
+        av.state = 'leaving';
+        av.el.classList.remove('walking', 'stopped');
+
+        // Find nearest edge and walk toward it
+        const distLeft = av.x;
+        const distRight = vw - av.x;
+        const distTop = av.y;
+        const distBottom = vh - av.y;
+        const minDist = Math.min(distLeft, distRight, distTop, distBottom);
+
+        let tx = 0, ty = 0;
+        if (minDist === distLeft) { tx = -1; ty = (Math.random() - 0.5) * 0.4; }
+        else if (minDist === distRight) { tx = 1; ty = (Math.random() - 0.5) * 0.4; }
+        else if (minDist === distTop) { ty = -1; tx = (Math.random() - 0.5) * 0.4; }
+        else { ty = 1; tx = (Math.random() - 0.5) * 0.4; }
+
+        const leaveSpeed = 2 + Math.random() * 2;
+        const len = Math.sqrt(tx * tx + ty * ty);
+        av.vx = (tx / len) * leaveSpeed;
+        av.vy = (ty / len) * leaveSpeed;
+
+        // Face walk direction
+        const facingLeft = av.vx < 0;
+        av.el.style.transform = `translate(-50%, -50%) scale(${av.scale})${facingLeft ? ' scaleX(-1)' : ''}`;
+      });
+    }
+
+    function initCrowdSpeechRecognition() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) return;
+
+      crowdRecognition = new SR();
+      crowdRecognition.continuous = true;
+      crowdRecognition.interimResults = true;
+      crowdRecognition.lang = 'en-US';
+
+      let lastProcessedIndex = -1;
+
+      crowdRecognition.onresult = (e) => {
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const text = e.results[i][0].transcript.toLowerCase();
+          // Only count each recognized segment once
+          if (i > lastProcessedIndex &&
+              (text.includes('cheryl') || text.includes('sheryl') ||
+               text.includes('cheryle') || text.includes('sharell') ||
+               text.includes('cheryle') || text.includes('cherrill'))) {
+            lastProcessedIndex = i;
+            handleCallout();
+            return;
+          }
+        }
+      };
+
+      crowdRecognition.onend = () => {
+        if (crowdPhase === 'idle' || crowdPhase === 'reacting') {
+          try { crowdRecognition.start(); } catch (e) {}
+        }
+      };
+
+      crowdRecognition.onerror = (e) => {
+        if (e.error === 'not-allowed') {
+          console.log('Mic not allowed, use fallback button');
+        }
+      };
+
+      try {
+        crowdRecognition.start();
+        document.getElementById('mic-indicator').style.display = 'inline-flex';
+      } catch (e) {
+        console.log('Could not start speech recognition');
+      }
+    }
+
+    // Spring emoji — ambient falling emojis in main UI
+    const SPRING_EMOJIS = ['🌸', '🌷', '🌼', '🌺', '🦋', '🌿', '🍃', '☀️', '🐝', '🌻', '💐', '🌱'];
+    let ambientInterval = null;
+
+    function spawnOneEmoji() {
+      const el = document.createElement('div');
+      el.className = 'spring-emoji';
+      el.textContent = SPRING_EMOJIS[Math.floor(Math.random() * SPRING_EMOJIS.length)];
+      el.style.left = `${Math.random() * 100}vw`;
+      el.style.fontSize = `${16 + Math.random() * 16}px`;
+      const duration = 6 + Math.random() * 6;
+      el.style.animationDuration = `${duration}s`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), duration * 1000);
+    }
+
+    function startAmbientEmojis() {
+      // Spawn a few right away
+      for (let i = 0; i < 4; i++) setTimeout(spawnOneEmoji, i * 400);
+      // Then periodically: 1 emoji every 2-4 seconds
+      ambientInterval = setInterval(() => {
+        spawnOneEmoji();
+      }, 2000 + Math.random() * 2000);
+    }
+
+    // Called each time the user says "Cheryl" or taps the button
+    function handleCallout() {
+      // Debounce: ignore rapid-fire within 1200ms
+      const now = Date.now();
+      if (now - lastCallTime < 1200) return;
+      if (crowdPhase === 'scattering' || crowdPhase === 'done') return;
+      lastCallTime = now;
+
+      callCount++;
+      crowdPhase = 'reacting';
+
+      // Fill the progress dot
+      const dot = document.getElementById(`dot-${callCount}`);
+      if (dot) dot.classList.add('filled');
+
+      // Flash subtitle
+      const subtitle = document.getElementById('crowd-subtitle');
+      subtitle.classList.add('flash');
+      setTimeout(() => subtitle.classList.remove('flash'), 400);
+
+      // 1. Freeze ALL walking characters (including Cheryl)
+      avatars.forEach(av => {
+        if (av.state === 'walking') {
+          av.state = 'stopped';
+          av.el.classList.remove('walking');
+          av.el.classList.add('stopped');
+          // Face forward (remove flip)
+          av.el.style.transform = `translate(-50%, -50%) scale(${av.scale})`;
+        }
+      });
+
+      // 2. After 600ms pause, send this batch leaving
+      setTimeout(() => {
+        const batch = avatarBatches[callCount - 1];
+        sendBatchLeaving(batch);
+
+        // 3. Resume walking for remaining non-leaving, non-Cheryl characters
+        //    (On call 3, only Cheryl remains so this effectively only resumes Cheryl)
+        setTimeout(() => {
+          if (callCount >= CALLS_REQUIRED) {
+            // Call 3: Cheryl stays stopped, highlight her
+            const cheryl = avatars[CHERYL_INDEX];
+            cheryl.state = 'stopped';
+            cheryl.el.classList.add('cheryl-highlight');
+            finishCrowdScene();
+          } else {
+            // Resume remaining characters
+            avatars.forEach(av => {
+              if (av.state === 'stopped') {
+                av.state = 'walking';
+                av.el.classList.remove('stopped');
+                av.el.classList.add('walking');
+                // Restore direction-based flip
+                applyPosition(av);
+              }
+            });
+
+            // Update prompt text for next call
+            const hint = CALL_HINTS[callCount];
+            if (hint) {
+              document.getElementById('crowd-title').textContent = hint.title;
+              subtitle.textContent = hint.subtitle;
+            }
+            crowdPhase = 'idle';
+          }
+        }, 400);
+      }, 600);
+    }
+
+    // Pre-fetched greeting audio
+    const GREETING_TEXT = isWidget
+      ? "Hi, this is Cheryl! What can I help you with?"
+      : "Hey! I'm Cheryl — well, a mini digital version of her. Ask me anything about her work, her projects, or what she's like to work with!";
+    let greetingAudioUrl = null;
+
+    // After all 3 calls: transition to main UI
+    function finishCrowdScene() {
+      crowdPhase = 'scattering';
+
+      // Stop crowd speech recognition
+      if (crowdRecognition) {
+        try { crowdRecognition.stop(); } catch (e) {}
+        crowdRecognition = null;
+      }
+
+      // Pre-fetch greeting TTS NOW (during user gesture, in parallel)
+      fetch('/api/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: GREETING_TEXT }),
+      }).then(r => r.ok ? r.blob() : null)
+        .then(blob => {
+          if (blob) greetingAudioUrl = URL.createObjectURL(blob);
+        }).catch(() => {});
+
+      // Hide prompt text, let Cheryl be alone for a moment
+      document.getElementById('crowd-prompt').classList.remove('visible');
+
+      // Wait for leaving characters to clear, then transition
+      setTimeout(() => {
+        // Stop walk loop
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+
+        const overlay = document.getElementById('crowd-overlay');
+        overlay.classList.add('fade-out');
+        document.getElementById('main-content').classList.remove('hidden-behind');
+
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          crowdPhase = 'done';
+          initRecognition();
+          startAmbientEmojis();
+          autoGreet();
+        }, 600);
+      }, 2000);
+    }
+
+    // Init crowd scene on load (or skip if widget mode)
+    document.addEventListener('DOMContentLoaded', () => {
+      if (isWidget) {
+        // Hide crowd overlay, show main content immediately
+        const overlay = document.getElementById('crowd-overlay');
+        overlay.classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden-behind');
+        crowdPhase = 'done';
+        initRecognition();
+        startAmbientEmojis();
+        autoGreet();
+      } else {
+        initCrowdScene();
+      }
+    });
+
+    // ========== MAIN APP ==========
+    // State
+    let state = 'idle'; // idle | recording | thinking | speaking
+    let conversationHistory = [];
+    let recognition = null;
+    let currentAudio = null;
+
+    // DOM
+    const orb = document.getElementById('orb');
+    const transcript = document.getElementById('transcript');
+    const statusEl = document.getElementById('status');
+    const btnMic = document.getElementById('btn-mic');
+    const btnStop = document.getElementById('btn-stop');
+    const chipsEl = document.getElementById('chips');
+    const textInput = document.getElementById('text-input');
+    const btnSend = document.getElementById('btn-send');
+
+    // State machine
+    function setState(newState) {
+      state = newState;
+      orb.className = 'avatar-main';
+      statusEl.className = 'status';
+
+      switch (state) {
+        case 'idle':
+          statusEl.textContent = 'ready';
+          btnMic.disabled = false;
+          btnMic.classList.remove('recording');
+          btnMic.innerHTML = '&#x2299; TAP TO SPEAK';
+          btnStop.disabled = true;
+          setChipsDisabled(false);
+          textInput.disabled = false;
+          btnSend.disabled = false;
+          break;
+        case 'recording':
+          orb.classList.add('listening');
+          statusEl.textContent = 'listening...';
+          statusEl.classList.add('active');
+          btnMic.classList.add('recording');
+          btnMic.innerHTML = '&#x25CF; recording...';
+          btnStop.disabled = true;
+          setChipsDisabled(true);
+          textInput.disabled = true;
+          btnSend.disabled = true;
+          break;
+        case 'thinking':
+          orb.classList.add('thinking');
+          statusEl.textContent = 'thinking...';
+          btnMic.disabled = true;
+          btnMic.classList.remove('recording');
+          btnMic.innerHTML = '&#x2299; TAP TO SPEAK';
+          btnStop.disabled = true;
+          setChipsDisabled(true);
+          textInput.disabled = true;
+          btnSend.disabled = true;
+          break;
+        case 'speaking':
+          orb.classList.add('speaking');
+          statusEl.textContent = 'speaking';
+          btnMic.disabled = true;
+          btnMic.classList.remove('recording');
+          btnMic.innerHTML = '&#x2299; TAP TO SPEAK';
+          btnStop.disabled = false;
+          setChipsDisabled(true);
+          textInput.disabled = true;
+          btnSend.disabled = true;
+          break;
+      }
+    }
+
+    function setChipsDisabled(disabled) {
+      chipsEl.querySelectorAll('.chip').forEach(c => c.disabled = disabled);
+    }
+
+    // Transcript management
+    function addBubble(text, role) {
+      const div = document.createElement('div');
+      div.className = `bubble ${role}`;
+      div.textContent = text;
+      transcript.appendChild(div);
+
+      // Keep max 8 bubbles (4 exchanges)
+      while (transcript.children.length > 8) {
+        transcript.removeChild(transcript.firstChild);
+      }
+      transcript.scrollTop = transcript.scrollHeight;
+    }
+
+    // Speech recognition
+    function initRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        statusEl.textContent = 'speech recognition not supported';
+        btnMic.disabled = true;
+        return;
+      }
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        handleUserInput(text);
+      };
+
+      recognition.onerror = (e) => {
+        console.error('Speech error:', e.error);
+        if (e.error !== 'aborted') {
+          setState('idle');
+        }
+      };
+
+      recognition.onend = () => {
+        if (state === 'recording') {
+          // Recognition ended without result
+          setState('idle');
+        }
+      };
+    }
+
+    function toggleMic() {
+      if (state === 'recording') {
+        recognition.stop();
+        setState('idle');
+        return;
+      }
+      if (state !== 'idle') return;
+      setState('recording');
+      recognition.start();
+    }
+
+    // Send chip query
+    function sendChip(el) {
+      if (state !== 'idle') return;
+      handleUserInput(el.textContent);
+    }
+
+    // Send text input
+    function sendText() {
+      if (state !== 'idle') return;
+      const text = textInput.value.trim();
+      if (!text) return;
+      textInput.value = '';
+      handleUserInput(text);
+    }
+
+    // Enter key to send
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); sendText(); }
+    });
+
+    // Main flow
+    async function handleUserInput(text) {
+      addBubble(text, 'user');
+      conversationHistory.push({ role: 'user', parts: [{ text }] });
+
+      setState('thinking');
+
+      try {
+        // Chat
+        const chatRes = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: conversationHistory }),
+        });
+
+        if (!chatRes.ok) throw new Error('Chat API error');
+        const { reply } = await chatRes.json();
+
+        conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+        addBubble(reply, 'ai');
+
+        // TTS — stream audio playback (play as chunks arrive)
+        setState('speaking');
+        const ttsRes = await fetch('/api/speak', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: reply }),
+        });
+
+        if (!ttsRes.ok) throw new Error('TTS API error');
+
+        // Collect chunks and start playing as soon as we have enough data
+        const reader = ttsRes.body.getReader();
+        const chunks = [];
+        let firstChunkPlayed = false;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (value) chunks.push(value);
+
+          // Start playback after first ~8KB arrives (enough for audio to begin)
+          if (!firstChunkPlayed && chunks.reduce((s, c) => s + c.length, 0) > 8000) {
+            firstChunkPlayed = true;
+            const partialBlob = new Blob(chunks, { type: 'audio/mpeg' });
+            const partialUrl = URL.createObjectURL(partialBlob);
+            currentAudio = new Audio(partialUrl);
+            currentAudio.play().catch(() => {});
+            // We'll replace with full audio once done
+          }
+
+          if (done) break;
+        }
+
+        // Build final complete audio and swap in
+        const fullBlob = new Blob(chunks, { type: 'audio/mpeg' });
+        const fullUrl = URL.createObjectURL(fullBlob);
+
+        if (!firstChunkPlayed) {
+          // Short response — never hit the 8KB threshold, play full audio now
+          currentAudio = new Audio(fullUrl);
+          currentAudio.play().catch(() => {});
+        } else {
+          // Replace partial with full audio at current playback position
+          const prevAudio = currentAudio;
+          const currentTime = prevAudio ? prevAudio.currentTime : 0;
+          const fullAudio = new Audio(fullUrl);
+          fullAudio.currentTime = currentTime;
+          fullAudio.play().catch(() => {});
+          if (prevAudio) { prevAudio.pause(); URL.revokeObjectURL(prevAudio.src); }
+          currentAudio = fullAudio;
+        }
+
+        currentAudio.onended = () => {
+          URL.revokeObjectURL(fullUrl);
+          currentAudio = null;
+          setState('idle');
+        };
+        currentAudio.onerror = () => {
+          URL.revokeObjectURL(fullUrl);
+          currentAudio = null;
+          setState('idle');
+        };
+
+      } catch (err) {
+        console.error('Error:', err);
+        addBubble('Oops, something went wrong. Try again?', 'ai');
+        setState('idle');
+      }
+    }
+
+    // Auto-greet using pre-fetched audio
+    async function autoGreet() {
+      conversationHistory.push({ role: 'model', parts: [{ text: GREETING_TEXT }] });
+      addBubble(GREETING_TEXT, 'ai');
+
+      // Wait for pre-fetched audio (should already be ready from scatter phase)
+      const url = await new Promise(resolve => {
+        if (greetingAudioUrl) return resolve(greetingAudioUrl);
+        let waited = 0;
+        const interval = setInterval(() => {
+          waited += 100;
+          if (greetingAudioUrl) { clearInterval(interval); resolve(greetingAudioUrl); }
+          if (waited > 8000) { clearInterval(interval); resolve(null); }
+        }, 100);
+      });
+
+      if (!url) { setState('idle'); return; }
+
+      setState('speaking');
+      currentAudio = new Audio(url);
+      currentAudio.onended = () => {
+        URL.revokeObjectURL(url);
+        currentAudio = null;
+        setState('idle');
+      };
+      currentAudio.onerror = () => {
+        URL.revokeObjectURL(url);
+        currentAudio = null;
+        setState('idle');
+      };
+      currentAudio.play().catch(() => setState('idle'));
+    }
+
+    // Stop
+    function stopAll() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+      if (recognition && state === 'recording') {
+        recognition.stop();
+      }
+      setState('idle');
+    }
+
+    // Init — speech recognition is deferred until crowd scene dismisses
+    // initRecognition() is called from triggerScatter() after overlay fades
+  </script>
+</body>
+</html>

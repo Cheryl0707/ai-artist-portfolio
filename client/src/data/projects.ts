@@ -33,6 +33,7 @@ export interface Category {
 export const categories: Category[] = [
   { id: "gen-production", label: { en: "Generative Production", zh: "生成式制作" } },
   { id: "automation", label: { en: "Automation Workflows", zh: "自动化工作流" } },
+  { id: "interactive-design", label: { en: "Interactive Design", zh: "交互设计" } },
   { id: "google-ai", label: { en: "Playground", zh: "Playground" } },
 ];
 
@@ -390,6 +391,164 @@ The Draft pipeline offers two modes: template-based quick drafts and AI-assisted
         metric: { en: "Improved team efficiency", zh: "提升团队效率" },
         label: { en: "Impact", zh: "影响" },
       },
+    ],
+  },
+
+  // ── Interactive Design (SFU) ────────────────────────────
+  {
+    id: "pears",
+    title: {
+      en: "Pærs — Maternity Assistant App",
+      zh: "Pærs — 孕期助手 App",
+    },
+    description: {
+      en: "An online journalized maternity assistant app designed to help pregnant families learn scientific maternity knowledge, care about their emotions and accompany their journey to being parents.",
+      zh: "一款在线日志式孕期助手 App，帮助准爸妈学习科学孕产知识、关注情绪健康，陪伴他们走过成为父母的旅程。",
+    },
+    fullDescription: {
+      en: `Pærs is a full-featured maternity assistant app designed end-to-end as a solo project — from user research and problem framing through information architecture, content strategy, visual design system, and high-fidelity UI.
+
+The app provides audio-based scientific parenting content and digitalizes Doula and Marital Therapy services, making professional support accessible through a warm, approachable interface. The design process included competitive analysis, user persona development, user flow mapping, wireframing, and iterative high-fidelity prototyping in Figma.`,
+      zh: `Pærs 是一款功能完整的孕期助手 App，作为个人项目从头到尾独立完成——从用户调研和问题定义，到信息架构、内容策略、视觉设计系统和高保真 UI 设计。
+
+该 App 提供基于音频的科学育儿内容，并将 Doula（导乐）和婚姻治疗服务数字化，通过温暖、易于接近的界面让专业支持触手可及。设计过程包括竞品分析、用户画像建立、用户流程图、线框图和 Figma 中的迭代高保真原型设计。`,
+    },
+    coverImage: "/images/projects/pears/pears-cover.png",
+    heroImage: "/images/projects/pears/pears-2.png",
+    processImages: [
+      "/images/projects/pears/pears-2.png",
+      "/images/projects/pears/pears-3.png",
+      "/images/projects/pears/pears-4.png",
+      "/images/projects/pears/pears-5.png",
+      "/images/projects/pears/pears-6.png",
+      "/images/projects/pears/pears-7.png",
+      "/images/projects/pears/pears-8.png",
+      "/images/projects/pears/pears-9.png",
+      "/images/projects/pears/pears-10.png",
+      "/images/projects/pears/pears-11.png",
+      "/images/projects/pears/pears-12.png",
+      "/images/projects/pears/pears-13.png",
+      "/images/projects/pears/pears-14.png",
+      "/images/projects/pears/pears-15.png",
+      "/images/projects/pears/pears-16.png",
+      "/images/projects/pears/pears-17.png",
+    ],
+    tags: [
+      { en: "UI/UX Design", zh: "UI/UX 设计" },
+      { en: "Product Design", zh: "产品设计" },
+      { en: "User Research", zh: "用户调研" },
+      { en: "Prototyping", zh: "原型设计" },
+      { en: "Design System", zh: "设计系统" },
+    ],
+    tools: ["Figma"],
+    year: "2022",
+    slug: "paers-maternity-app",
+    category: "interactive-design",
+    roles: [
+      { en: "Solo Designer", zh: "独立设计师" },
+      { en: "UX Researcher", zh: "用户体验研究员" },
+    ],
+  },
+  {
+    id: "google-map-senior",
+    title: {
+      en: "Google Map Senior Mode",
+      zh: "Google Map 长者模式",
+    },
+    description: {
+      en: "A redesigned Google Maps interface with senior-friendly navigation, accessibility-first design, and real user testing with elderly participants.",
+      zh: "重新设计的 Google Maps 界面，提供长者友好的导航体验、无障碍优先设计，并与老年参与者进行了真实用户测试。",
+    },
+    fullDescription: {
+      en: `Google Map Senior Mode reimagines the Google Maps navigation experience for elderly users who struggle with complex digital interfaces. The project addresses the digital divide facing seniors through a simplified, accessible interface design.
+
+The design process included user research to understand barriers isolating seniors from digital interfaces, persona development, user flow mapping, and high-fidelity prototyping in Figma with interactive demos in ProtoPie. Key design decisions included larger touch targets, simplified navigation flows, step-by-step tutorial onboarding, and high-contrast visual elements. The prototype was tested with real senior users, producing insights that informed further design iterations.`,
+      zh: `Google Map 长者模式为在复杂数字界面中感到困难的老年用户重新构想了 Google Maps 导航体验。该项目通过简化、无障碍的界面设计来应对老年人面临的数字鸿沟。
+
+设计过程包括用户调研以了解将老年人隔离在数字界面之外的障碍、用户画像建立、用户流程图，以及在 Figma 中的高保真原型设计和 ProtoPie 中的交互演示。关键设计决策包括更大的触控区域、简化的导航流程、分步引导教程和高对比度视觉元素。原型经过真实老年用户测试，产出的洞察进一步推动了设计迭代。`,
+    },
+    coverImage: "/images/projects/google-map-senior/cover.png",
+    processImages: [
+      "/images/projects/google-map-senior/methodology.png",
+      "/images/projects/google-map-senior/research.png",
+      "/images/projects/google-map-senior/reasons-isolate.png",
+      "/images/projects/google-map-senior/helpful-solutions.png",
+      "/images/projects/google-map-senior/define-the-goal.png",
+      "/images/projects/google-map-senior/user-flow.png",
+      "/images/projects/google-map-senior/mock-ups.png",
+      "/images/projects/google-map-senior/aesthetic-guideline.png",
+      "/images/projects/google-map-senior/persona.png",
+      "/images/projects/google-map-senior/prototype-1.png",
+      "/images/projects/google-map-senior/prototype-2.png",
+      "/images/projects/google-map-senior/prototype-3.png",
+      "/images/projects/google-map-senior/test-out.png",
+    ],
+    tags: [
+      { en: "UI/UX Design", zh: "UI/UX 设计" },
+      { en: "Accessibility", zh: "无障碍设计" },
+      { en: "User Research", zh: "用户调研" },
+      { en: "User Testing", zh: "用户测试" },
+      { en: "Prototyping", zh: "原型设计" },
+    ],
+    tools: ["Figma", "ProtoPie"],
+    year: "2022",
+    slug: "google-map-senior-mode",
+    category: "interactive-design",
+    roles: [
+      { en: "UX/UI Designer (Navigation)", zh: "UX/UI 设计师（导航功能）" },
+      { en: "Researcher", zh: "调研员" },
+    ],
+  },
+  {
+    id: "alltrails",
+    title: {
+      en: "AllTrails Add-on Features",
+      zh: "AllTrails 附加功能设计",
+    },
+    description: {
+      en: "Designed two new features for AllTrails — a 'Handbook' knowledge platform and 'Distance Rewards' gamification system — balancing user needs with business objectives.",
+      zh: "为 AllTrails 设计了两个新功能——\"手册\" 知识平台和 \"距离奖励\" 游戏化系统——平衡用户需求与商业目标。",
+    },
+    fullDescription: {
+      en: `Designed two add-on features for AllTrails as a solo UX design project: the "Handbook" and "Distance Rewards" systems.
+
+The Handbook feature integrates outdoor knowledge and hiking essentials into the app — safety tips, seasonal hotspots, packing guides, and first aid guidelines. It's designed to be beginner-friendly while also inviting experienced hikers to share their expertise, building community and eliminating knowledge barriers.
+
+Distance Rewards gamifies the hiking experience by encouraging users to reach distance milestones in exchange for AllTrails Premium trials, creating a win-win that drives engagement and reduces the paywall friction between users and premium features.
+
+The design process included competitive analysis, user persona development, user scenario mapping, user flow design, wireframing, and high-fidelity interactive prototyping in Figma and ProtoPie.`,
+      zh: `作为个人 UX 设计项目，为 AllTrails 设计了两个附加功能："手册"和"距离奖励"系统。
+
+手册功能将户外知识和徒步必备信息整合到 App 中——安全贴士、季节性热门路线、打包指南和急救指南。设计上对新手友好，同时也欢迎经验丰富的徒步者分享经验，建立社区并消除知识壁垒。
+
+距离奖励通过鼓励用户达到距离里程碑来换取 AllTrails Premium 试用，将徒步体验游戏化，创造一个双赢局面——既提高用户参与度，又减少用户与高级功能之间的付费墙阻力。
+
+设计过程包括竞品分析、用户画像建立、用户场景图、用户流程设计、线框图，以及在 Figma 和 ProtoPie 中的高保真交互原型设计。`,
+    },
+    coverImage: "/images/projects/alltrails/cover.png",
+    processImages: [
+      "/images/projects/alltrails/alltrails-1.png",
+      "/images/projects/alltrails/persona.png",
+      "/images/projects/alltrails/user-flow.png",
+      "/images/projects/alltrails/hi-fidel1.png",
+      "/images/projects/alltrails/hi-fidel2.png",
+      "/images/projects/alltrails/user-sce1.png",
+      "/images/projects/alltrails/user-sce2.png",
+      "/images/projects/alltrails/prototype.png",
+    ],
+    tags: [
+      { en: "UX Design", zh: "用户体验设计" },
+      { en: "Feature Design", zh: "功能设计" },
+      { en: "Gamification", zh: "游戏化" },
+      { en: "User Research", zh: "用户调研" },
+      { en: "Prototyping", zh: "原型设计" },
+    ],
+    tools: ["Figma", "ProtoPie"],
+    year: "2022",
+    slug: "alltrails-add-on-features",
+    category: "interactive-design",
+    roles: [
+      { en: "Solo UX Designer", zh: "独立 UX 设计师" },
     ],
   },
 

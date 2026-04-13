@@ -8,7 +8,7 @@ export const en: Translations = {
     linkedin: "LinkedIn",
     comingSoon: "Coming soon",
     copyright: "\u00A9 2025 Cheryl Liu",
-    digitalTwin: "Digital Twin",
+    digitalTwin: "Miss Coconut",
     gallery: "Gallery",
   },
   hero: {

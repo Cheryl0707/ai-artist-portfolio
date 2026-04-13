@@ -49,6 +49,7 @@ interface Section {
   layout?: "full" | "side-by-side" | "hero-plus-row" | "video-hero-plus-row" | "image-text" | "marquee" | "problem-statement" | "two-col-cards";
   youtube?: string;
   pdf?: string;
+  protopie?: string;
   extraRows?: { label: string; items: { type: "image" | "video"; src: string; caption?: (string | BiText) }[] }[];
 }
 const projectSections: Record<string, Section[]> = {
@@ -459,6 +460,193 @@ That's not efficient enough for visual communication at commercial speed. To mak
         "/images/projects/GAIS/avatar/different avatars/processed_processed_help_me_to_202603181227-avatar-5 1 1.png",
       ],
       layout: "marquee",
+    },
+  ],
+  "paers-maternity-app": [
+    {
+      label: { en: "User Research & Problem Framing", zh: "用户调研与问题定义" },
+      description: {
+        en: "Research into the challenges facing expectant families — information overload, emotional isolation, and lack of accessible professional support. These insights shaped the core product direction.",
+        zh: "研究准爸妈面临的挑战——信息过载、情感孤立和缺乏可及的专业支持。这些洞察塑造了核心产品方向。",
+      },
+      images: [
+        "/images/projects/pears/pears-4.png",
+        "/images/projects/pears/pears-5.png",
+      ],
+      layout: "full",
+    },
+    {
+      label: { en: "Information Architecture & Content Strategy", zh: "信息架构与内容策略" },
+      description: {
+        en: "Structured the app's content hierarchy around key maternity stages, integrating audio content, journal entries, and professional services into a cohesive user flow.",
+        zh: "围绕关键孕产阶段构建 App 的内容层级，将音频内容、日记记录和专业服务整合为连贯的用户流程。",
+      },
+      images: [
+        "/images/projects/pears/pears-6.png",
+        "/images/projects/pears/pears-7.png",
+        "/images/projects/pears/pears-8.png",
+      ],
+      layout: "full",
+    },
+    {
+      label: { en: "Visual Design System & High-Fidelity UI", zh: "视觉设计系统与高保真 UI" },
+      description: {
+        en: "Developed a warm, nurturing visual design system with consistent typography, color palette, and component patterns. High-fidelity screens cover onboarding, home dashboard, audio player, journal, and professional consultation booking.",
+        zh: "开发了温暖、富有关怀感的视觉设计系统，包含一致的字体排版、色彩方案和组件模式。高保真界面涵盖引导页、首页仪表板、音频播放器、日记和专业咨询预约。",
+      },
+      images: [
+        "/images/projects/pears/pears-9.png",
+        "/images/projects/pears/pears-10.png",
+        "/images/projects/pears/pears-11.png",
+        "/images/projects/pears/pears-12.png",
+        "/images/projects/pears/pears-13.png",
+        "/images/projects/pears/pears-14.png",
+        "/images/projects/pears/pears-15.png",
+        "/images/projects/pears/pears-16.png",
+        "/images/projects/pears/pears-17.png",
+      ],
+      layout: "full",
+    },
+  ],
+  "google-map-senior-mode": [
+    {
+      label: { en: "Design Process & Research", zh: "设计流程与调研" },
+      description: {
+        en: "Applied a structured design methodology combining desk research, user interviews, and competitive analysis to understand the barriers isolating seniors from digital map interfaces.",
+        zh: "采用结构化设计方法论，结合桌面调研、用户访谈和竞品分析，了解将老年人隔离在数字地图界面之外的障碍。",
+      },
+      images: [
+        "/images/projects/google-map-senior/methodology.png",
+        "/images/projects/google-map-senior/research.png",
+      ],
+      layout: "full",
+    },
+    {
+      label: { en: "Problem Definition & Solutions", zh: "问题定义与解决方案" },
+      description: {
+        en: "Identified key reasons seniors struggle with digital interfaces — small text, complex navigation, unfamiliar gestures — and proposed targeted solutions including simplified UI, tutorial onboarding, and larger touch targets.",
+        zh: "识别了老年人在数字界面中遇到困难的关键原因——文字过小、导航复杂、不熟悉的手势——并提出了针对性解决方案，包括简化 UI、引导教程和更大的触控区域。",
+      },
+      images: [
+        "/images/projects/google-map-senior/reasons-isolate.png",
+        "/images/projects/google-map-senior/helpful-solutions.png",
+        "/images/projects/google-map-senior/define-the-goal.png",
+      ],
+      layout: "full",
+    },
+    {
+      label: { en: "User Flow & Persona", zh: "用户流程与画像" },
+      description: {
+        en: "Mapped the complete user flow for senior navigation and developed detailed user personas based on research findings.",
+        zh: "为长者导航绘制了完整的用户流程图，并基于调研发现开发了详细的用户画像。",
+      },
+      images: [
+        "/images/projects/google-map-senior/user-flow.png",
+        "/images/projects/google-map-senior/persona.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "Mockups & Design Guidelines", zh: "视觉稿与设计规范" },
+      description: {
+        en: "High-fidelity mockups with an aesthetic guideline ensuring consistent, accessible visual language across all screens.",
+        zh: "高保真视觉稿及美学规范，确保所有界面具有一致、无障碍的视觉语言。",
+      },
+      images: [
+        "/images/projects/google-map-senior/mock-ups.png",
+        "/images/projects/google-map-senior/aesthetic-guideline.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "Interactive Prototype", zh: "交互原型" },
+      description: {
+        en: "Built a fully interactive prototype in ProtoPie, demonstrating the complete senior navigation flow — from opening the app to reaching a destination with step-by-step guidance. Try it below.",
+        zh: "在 ProtoPie 中构建了完全交互式原型，展示完整的长者导航流程——从打开 App 到通过分步引导到达目的地。请在下方体验。",
+      },
+      images: [],
+      layout: "full",
+      protopie: "https://cloud.protopie.io/p/cd8d4db54f?ui=true&scaleToFit=true&enableHotspotHints=true&cursorType=touch&mockup=true&bgColor=%23F5F5F5&bgImage=undefined&playSpeed=1",
+    },
+    {
+      label: { en: "User Testing with Real Seniors", zh: "真实用户测试" },
+      description: {
+        en: "Tested the interactive prototype with real senior users, observing their navigation patterns, pain points, and moments of delight. Insights from testing informed further design iterations.",
+        zh: "与真实老年用户测试交互原型，观察他们的导航模式、痛点和愉悦时刻。测试中的洞察推动了进一步的设计迭代。",
+      },
+      images: [
+        "/images/projects/google-map-senior/test-out.png",
+      ],
+      layout: "full",
+    },
+  ],
+  "alltrails-add-on-features": [
+    {
+      label: { en: "Video Walkthrough", zh: "视频演示" },
+      description: {
+        en: "A complete walkthrough of the Handbook feature — from browsing safety tips and packing essentials to playing audio content and navigating between categories.",
+        zh: "Handbook 功能的完整演示——从浏览安全贴士和打包必备品到播放音频内容和分类导航。",
+      },
+      images: [],
+      layout: "full",
+      youtube: "QJOu19yQuZA",
+    },
+    {
+      label: { en: "App Analysis", zh: "应用分析" },
+      description: {
+        en: "Analyzed AllTrails' existing interface design patterns — layout clarity, color psychology (green = nature, life, relaxation), and icon usability — to ensure add-on features integrate seamlessly with the established design language.",
+        zh: "分析了 AllTrails 现有的界面设计模式——布局清晰度、色彩心理学（绿色 = 自然、生命、放松）和图标可用性——以确保附加功能与已建立的设计语言无缝整合。",
+      },
+      images: [
+        "/images/projects/alltrails/alltrails-1.png",
+      ],
+      layout: "full",
+    },
+    {
+      label: { en: "Feature Design: Handbook & Distance Rewards", zh: "功能设计：手册与距离奖励" },
+      description: {
+        en: "Designed two complementary features. The Handbook integrates outdoor knowledge — hiking safety tips, seasonal hotspots, packing guides, hiking essentials, and first aid guidelines. Goals: build a platform to popularize hiking knowledge, enhance connection between novices and experts, and eliminate knowledge barriers. Distance Rewards gamifies the experience by rewarding distance milestones with AllTrails Premium trials — driving engagement while reducing paywall friction. The Handbook was selected as the primary feature for detailed design execution.",
+        zh: "设计了两个互补功能。手册整合了户外知识——徒步安全贴士、季节性热门路线、打包指南、徒步必备品和急救指南。目标：建立平台普及徒步知识、增强新手与专家之间的联系、消除知识壁垒。距离奖励通过用距离里程碑兑换 AllTrails Premium 试用来游戏化体验——在提高参与度的同时减少付费墙阻力。手册被选为主要功能进行详细设计执行。",
+      },
+      images: [
+        "/images/projects/alltrails/persona.png",
+        "/images/projects/alltrails/user-flow.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "UI Component Breakdown", zh: "UI 组件拆解" },
+      description: {
+        en: "Annotated design of the Handbook interface — breaking down every interaction element: search bar for keyword input, navigate tabs for category filtering (Safety, Packing, Pro's Talk, First Aid), article entrance cards with headlines and thumbnails, audio entrance for listening-based content, and like/save buttons for content curation. Each component follows AllTrails' existing design language while introducing new content patterns.",
+        zh: "Handbook 界面的标注设计——拆解每一个交互元素：用于关键词输入的搜索栏、用于分类筛选的导航标签（安全、打包、达人分享、急救）、带标题和缩略图的文章入口卡片、用于收听内容的音频入口，以及收藏/保存按钮。每个组件遵循 AllTrails 现有设计语言，同时引入新的内容模式。",
+      },
+      images: [
+        "/images/projects/alltrails/hi-fidel1.png",
+        "/images/projects/alltrails/hi-fidel2.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "Dual Content Modes", zh: "双内容模式" },
+      description: {
+        en: "The Handbook supports two content consumption modes designed for different real-life scenarios. Audio content is optimized for hands-busy moments — driving to the trailhead, preparing gear, or showering. Image-text content is designed for focused reading moments — before sleep, during leisure time, or in areas requiring volume control. This dual-mode approach ensures hiking knowledge is accessible regardless of the user's context.",
+        zh: "手册支持两种内容消费模式，针对不同的真实生活场景。音频内容为双手繁忙时刻优化——驾车前往步道起点、准备装备或洗澡时。图文内容为专注阅读时刻设计——睡前、休闲时间或需要控制音量的区域。这种双模式方法确保无论用户处于何种场景，都能获取徒步知识。",
+      },
+      images: [
+        "/images/projects/alltrails/user-sce1.png",
+        "/images/projects/alltrails/user-sce2.png",
+      ],
+      layout: "side-by-side",
+    },
+    {
+      label: { en: "Interactive Prototype", zh: "交互原型" },
+      description: {
+        en: "Built in ProtoPie — a fully interactive prototype demonstrating the complete user flow for Handbook browsing, search, category navigation, audio playback, and image-text content reading. Try it below.",
+        zh: "使用 ProtoPie 构建——完全交互式原型，展示手册浏览、搜索、分类导航、音频播放和图文内容阅读的完整用户流程。请在下方体验。",
+      },
+      images: [],
+      layout: "full",
+      protopie: "https://cloud.protopie.io/p/a6d6449037?ui=true&scaleToFit=true&enableHotspotHints=true&cursorType=touch&mockup=true&bgColor=%23F5F5F5&bgImage=undefined&playSpeed=1",
     },
   ],
   "checkers-vp": [
@@ -1007,6 +1195,18 @@ export default function ProjectDetail() {
                       />
                     </div>
                     <YouTubeViewCount videoId={section.youtube} />
+                  </div>
+                ) : section.protopie ? (
+                  <div className="flex justify-center">
+                    <div className="relative overflow-hidden rounded-2xl" style={{ width: 390, height: 844, background: "#F5F5F5" }}>
+                      <iframe
+                        src={section.protopie}
+                        title={bt(section.label)}
+                        allow="clipboard-write"
+                        className="absolute inset-0 w-full h-full"
+                        style={{ border: "none" }}
+                      />
+                    </div>
                   </div>
                 ) : section.pdf ? (
                   <PdfViewer file={section.pdf} />

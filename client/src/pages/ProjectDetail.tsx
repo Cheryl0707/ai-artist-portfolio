@@ -592,17 +592,6 @@ That's not efficient enough for visual communication at commercial speed. To mak
       youtube: "QJOu19yQuZA",
     },
     {
-      label: { en: "App Analysis", zh: "应用分析" },
-      description: {
-        en: "Analyzed AllTrails' existing interface design patterns — layout clarity, color psychology (green = nature, life, relaxation), and icon usability — to ensure add-on features integrate seamlessly with the established design language.",
-        zh: "分析了 AllTrails 现有的界面设计模式——布局清晰度、色彩心理学（绿色 = 自然、生命、放松）和图标可用性——以确保附加功能与已建立的设计语言无缝整合。",
-      },
-      images: [
-        "/images/projects/alltrails/alltrails-1.png",
-      ],
-      layout: "full",
-    },
-    {
       label: { en: "Feature Design: Handbook & Distance Rewards", zh: "功能设计：手册与距离奖励" },
       description: {
         en: "Designed two complementary features. The Handbook integrates outdoor knowledge — hiking safety tips, seasonal hotspots, packing guides, hiking essentials, and first aid guidelines. Goals: build a platform to popularize hiking knowledge, enhance connection between novices and experts, and eliminate knowledge barriers. Distance Rewards gamifies the experience by rewarding distance milestones with AllTrails Premium trials — driving engagement while reducing paywall friction. The Handbook was selected as the primary feature for detailed design execution.",
